@@ -1,6 +1,13 @@
 <h1>投稿一覧</h1>
 
 <% @posts.each do |post| %>
-  <p>タイトル</p>
-  <%= post.title %>
+  <div>
+  <%= link_to post_path(post.id) do %>
+    <%= image_tag post.get_image %>
+  <% end %>
+  <p>商品名:<%= post.name %></p>
+  <p>★★★★★</p>
+  <p>一言：<%= post.title %></p>
+  <p>♥：１　コメント：0</p>
+  </div>
 <% end %>
