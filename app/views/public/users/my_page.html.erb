@@ -15,17 +15,10 @@
       <td>カナ</td>
       <td><%= @user.last_name_kana %><%= @user.first_name_kana %></td>
     </tr>
-  </tbody>
-</table>
-
-  <h3>投稿一覧<h3>
-<% @users.each do |user| %>
-  <tbody>
     <tr>
-      <td><%= link_to user.last_name + user.first_name, '#' %></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>メールアドレス</td>
+      <td><%= @user.email %></td>
     </tr>
   </tbody>
-  <% end %>
+</table>
+<h3>投稿一覧<h3>
