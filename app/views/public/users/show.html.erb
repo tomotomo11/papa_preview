@@ -1,0 +1,24 @@
+<h3>ユーザー詳細ページ</h3>
+<table>
+  <tbody>
+    <tr>
+      <td>ユーザー名</td>
+      <td><%= @user.last_name + @user.first_name %></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h3>投稿一覧<h3>
+  <% @posts.each do |post| %>
+  <div>
+  <%= link_to post_path(post.id) do %>
+    <%= image_tag post.get_image(250, 150) %>
+  <% end %>
+  <p>商品名:<%= post.name %></p>
+  <p>★★★★★</p>
+  <p>一言：<%= post.title %></p>
+  <p>♥：１　コメント：0</p>
+  <%= link_to '詳しく見る', post_path(post.id) %>
+  </div>
+<% end %>
