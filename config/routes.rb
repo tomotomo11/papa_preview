@@ -15,12 +15,14 @@ Rails.application.routes.draw do
   }
   #顧客側namespaceを含めないルーティング
   scope module: :public do
-    get '/users/my_page', to: 'users#my_page', as: "my_page"
+    get '/users/mypage' => 'users#mypage', as: "mypage"
+    get '/users/information/edit' => 'users#edit', as: "edit_information"
+    patch '/users/information' => 'users#update'
     get '/users/unsubscribe' => 'users#unsubscribe'
     patch '/users/withdraw' => 'users#withdraw'
     get '/searches' => 'searches#search'
     resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy]
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :show]
     resource :favotires, only: [:index]
   end
 
