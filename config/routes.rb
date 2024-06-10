@@ -18,8 +18,8 @@ Rails.application.routes.draw do
     get '/users/mypage' => 'users#mypage', as: "mypage"
     get '/users/information/edit' => 'users#edit', as: "edit_information"
     patch '/users/information' => 'users#update'
-    get '/users/unsubscribe' => 'users#unsubscribe'
-    patch '/users/withdraw' => 'users#withdraw'
+    get '/users/unsubscribe' => 'users#unsubscribe', as: 'confirm_unsubscribe'
+    patch '/users/withdraw' => 'users#withdraw', as: 'withdraw_user'
     get '/searches' => 'searches#search'
     resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy]
     resources :users, only: [:index, :show]
