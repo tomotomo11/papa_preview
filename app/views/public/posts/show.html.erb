@@ -2,7 +2,7 @@
   投稿詳細
 </h1>
 <div>
-  <%= image_tag @post.get_image %>
+  <%= image_tag @post.get_image(500, 300) %>
   <p>商品名：<%= @post.name %>　</p>
   <p>一言：<%= @post.title %></p>
   <p>商品説明：<%= @post.body %></p>

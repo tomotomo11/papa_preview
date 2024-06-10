@@ -1,0 +1,20 @@
+<h3>ユーザー一覧</h3>
+
+<table>
+  <thead>
+    <th>ユーザー名</th>
+    <th>投稿数</th>
+    <th>いいね</th>
+    <th>コメント</th>
+  </thead>
+  <% @users.each do |user| %>
+  <tbody>
+    <tr>
+      <td><%= link_to user.last_name + user.first_name, '#' %></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
