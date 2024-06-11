@@ -2,6 +2,7 @@
 
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  before_action :reject_inactive_user, only: [:create]
 
   def after_sign_in_path_for(resource)
     about_path
@@ -39,7 +40,7 @@ class Public::SessionsController < Devise::SessionsController
     @user = User.find_by(email: params[:user][:email])
     if @user #もしuserレコードが存在するなら「真」
       if @user.valid_password?(params[:user][:password]) && !@user.is_active #パスワードが正しく、かつ顧客が退会している場合
-        #flash[:danger] = 'お客様は退会済みです。申し訳ございませんが、別のメールアドレスをお使いください。'
+        flash[:danger] = 'お客様は退会済みです。申し訳ございませんが、別のメールアドレスをお使いください。'
         redirect_to new_user_session_path
       end
     end
