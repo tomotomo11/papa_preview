@@ -5,9 +5,11 @@ class Post < ApplicationRecord
   has_many :tag_relationships, dependent: :destroy
   has_one_attached :image
 
-  validates :name, presence: true
-  validates :title, presence: true
-  validates :body, presence: true
+  with_options presence: true do
+    validates :name
+    validates :title
+    validates :body
+  end
 
 
   def get_image(width, height)
