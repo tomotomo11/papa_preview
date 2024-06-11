@@ -59,6 +59,12 @@
         </div>
       </nav>
     </header>
-    <%= yield %>
+    <main>
+      <% flash.each do |message_type, message| %>
+        <div class="flash-message <%= message_type %>"><%= message %></div>
+      <% end %>
+      <%= yield %>
+    </main>
+    <footer>Copyright © 2024. Papa_Preview.</footer>
   </body>
 </html>

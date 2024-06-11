@@ -8,6 +8,11 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  with_options presence: true do
+    validates :full_name
+    validates :full_name_kana
+  end
+
 
   def full_name
     last_name + " " + first_name
