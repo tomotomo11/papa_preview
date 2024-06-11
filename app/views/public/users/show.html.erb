@@ -22,3 +22,7 @@
   <%= link_to '詳しく見る', post_path(post.id) %>
   </div>
 <% end %>
+
+<div>
+  <%= paginate @posts %>
+</div>
