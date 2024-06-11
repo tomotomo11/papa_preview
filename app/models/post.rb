@@ -3,8 +3,14 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :tag_relationships, dependent: :destroy
-
   has_one_attached :image
+
+  with_options presence: true do
+    validates :name
+    validates :title
+    validates :body
+  end
+
 
   def get_image(width, height)
     unless image.attached?
