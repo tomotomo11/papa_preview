@@ -13,12 +13,22 @@ class User < ApplicationRecord
     validates :full_name_kana
   end
 
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.last_name = "Guest"
+      user.first_name = "User"
+      user.last_name_kana = "ゲスト"
+      user.first_name_kana = "ユーザー"
+    end
+  end
+
 
   def full_name
-    last_name + " " + first_name
+    (last_name || "") + " " + (first_name || "")
   end
 
   def full_name_kana
-    last_name_kana + " " + first_name_kana
+    (last_name_kana || "") + " " + (first_name_kana || "")
   end
 end
