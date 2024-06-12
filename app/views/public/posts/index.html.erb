@@ -2,8 +2,8 @@
   <div class="row">
     <div class="container mt-5">
       <div class="row">
-        <div class="col md-3">
-          <h3>ジャンル一覧</h3>
+        <div class="col-3 md-3">
+          <h3 class="mt-5">ジャンル一覧</h3>
           <p>本</p>
           <p>おもちゃ</p>
           <p>おむつ</p>
@@ -14,13 +14,13 @@
           <p>テスト</p>
           <p>テスト</p>
         </div>
-        <div class="col md-9">
-          <h1>投稿一覧</h1>
+        <div class="col-9 md-9">
+          <h1 class="mb-5">投稿一覧</h1>
             <div class="row d-flex flex-wrap">
             <% @posts.each do |post| %>
               <div class="col">
                 <%= link_to post_path(post.id) do %>
-                  <%= image_tag post.get_image(400, 300) %>
+                  <%= image_tag post.get_image(300, 200) %>
                 <% end %>
                 <p>商品名:<%= post.name %></p>
                 <p>★★★★★</p>
@@ -31,7 +31,7 @@
             </div>
         </div>
       </div>
-      <div class="justify-content-center">
+      <div class="d-flex justify-content-center">
         <%= paginate @posts %>
       </div>
     </div>

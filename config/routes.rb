@@ -4,9 +4,9 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   #管理者側namespaceのルーティング
+  #    get 'top' => 'homes#top', as: 'top'
 
-    root to: 'homes#top'
-    get 'about' => 'homes#about'
+
 
   #顧客用 URL /users/sign_in ...
   devise_for :users,skip: [:passwords], controllers: {
@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   }
   #顧客側namespaceを含めないルーティング
   scope module: :public do
+    root to: 'homes#top'
+    get 'about' => 'homes#about'
     get '/users/mypage' => 'users#mypage', as: "mypage"
     get '/users/information/edit' => 'users#edit', as: "edit_information"
     patch '/users/information' => 'users#update'
