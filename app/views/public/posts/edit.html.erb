@@ -1,7 +1,7 @@
-<h1>新規投稿作成</h1>
+<h3>投稿編集</h3>
 <%= render '/layouts/error_messages', post: @post %>
 
-<%= form_with model: @post, method: :post do |f| %>
+<%= form_with model: @post do |f| %>
   <div>
     <%= f.label "商品画像" %>
     <%= f.file_field :image, accept: "image/*" %>
@@ -26,5 +26,9 @@
     <%= f.label "購入価格（税込）" %>
     <%= f.text_field :price %>
   </div>
-  <%= f.submit '新規投稿' %>
+  <div>
+    <%= f.label "star" %>
+    ★★★★★
+  </div>
+  <%= f.submit "変更を保存" %>
 <% end %>

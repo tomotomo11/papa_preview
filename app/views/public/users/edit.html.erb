@@ -1,0 +1,31 @@
+<h3>プロフィール編集</h3>
+<%= form_with model: @user, url: users_information_path, method: :patch do |f| %>
+  <table>
+    <thead>
+      <th></th>
+      <th></th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= f.label "氏名" %></td>
+        <td><%= f.text_field :last_name %></td>
+        <td><%= f.text_field :first_name %></td>
+      </tr>
+      <tr>
+        <td><%= f.label "カナ" %></td>
+        <td><%= f.text_field :last_name_kana %></td>
+        <td><%= f.text_field :first_name_kana %></td>
+      </tr>
+      <tr>
+        <td> <%= f.label "メールアドレス" %></td>
+        <td><%= f.text_field :email %></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><%= f.submit "変更内容を保存する" %></td>
+        <td><%= link_to "退会する", confirm_unsubscribe_path, class:"btn btn-danger px-4" %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
