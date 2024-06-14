@@ -32,8 +32,7 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      flash[:notice] = "変更を保存しました。"
-      redirect_to post_path(@post.id)
+      redirect_to post_path(@post.id), notice: "変更を保存しました。" 
     else
       flash[:alert] = "変更を保存できませんでした。"
       render :edit
@@ -44,7 +43,7 @@ class Public::PostsController < ApplicationController
     post = Post.find(params[:id])
     if post.destroy
       flash[:notice] = "投稿を削除しました。"
-      redirect_to posts_path
+      redirect_to mypage_path
     else
       flash[:alert] = "投稿を削除できませんでした。"
       redirect_to post_path(post.id)

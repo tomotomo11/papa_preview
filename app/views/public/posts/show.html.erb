@@ -18,7 +18,7 @@
           <h1 class="mb-5">投稿詳細</h1>
             <div class="row">
               <%= image_tag @post.get_image(500, 300) %>
-              <p>投稿者：<%= link_to @post.user.full_name, user_path(@post.user.id) %></p>
+              <p>投稿者：<%= link_to "#{@post.user.full_name}", user_path(@post.user.id) %></p>
               <p>商品名：<%= @post.name %></p>
               <p>一言：<%= @post.title %></p>
               <p>商品説明：<%= @post.body %></p>
