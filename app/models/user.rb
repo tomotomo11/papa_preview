@@ -9,8 +9,11 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
 
   with_options presence: true do
-    validates :full_name
-    validates :full_name_kana
+    validates :last_name
+    validates :first_name
+    validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
+    validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
+    validates :email, uniqueness: true
   end
 
   def self.guest

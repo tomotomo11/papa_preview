@@ -22,9 +22,9 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    user = current_user
-    if user.update(user_params)
-      redirect_to mypage_path
+    @user = current_user
+    if @user.update(user_params)
+      redirect_to mypage_path, notice: '会員情報の更新が完了しました。'
     else
       render :edit
     end
