@@ -27,12 +27,15 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    unless @post.user.id == current_user.id
+      redirect_to posts_path
+    end
   end
 
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path(@post.id), notice: "変更を保存しました。" 
+      redirect_to post_path(@post.id), notice: "変更を保存しました。"
     else
       flash[:alert] = "変更を保存できませんでした。"
       render :edit
