@@ -3,32 +3,35 @@
 
 <%= form_with model: @post do |f| %>
   <div>
-    <%= f.label "商品画像" %>
+    <%= f.label :image, "商品画像" %>
     <%= f.file_field :image, accept: "image/*" %>
   </div>
   <div>
-    <%= f.label "商品名" %>
-    <%= f.text_field :name %>
+    <%= f.label :name, "商品名" %>
+    <%= f.text_field :name, placeholder: "#{@post.name}" %>
   </div>
   <div>
-    <%= f.label "一言" %>
-    <%= f.text_field :title %>
+    <%= f.label :title, "一言" %>
+    <%= f.text_field :title, placeholder: "#{@post.title}" %>
   </div>
   <div>
-    <%= f.label "商品説明（レビュー）" %>
-    <%= f.text_area :body %>
+    <%= f.label :body, "商品説明（レビュー）" %>
+    <%= f.text_area :body, placeholder: "#{@post.body}" %>
   </div>
   <div>
-    <%= f.label "ジャンル" %>
-    <%= f.text_field :genre_id %>
+    <%= f.label :genre, "ジャンル" %>
+    <%= f.text_field :genre_id, placeholder: "#{}" %>
   </div>
   <div>
-    <%= f.label "購入価格（税込）" %>
-    <%= f.text_field :price %>
+    <%= f.label :price, "購入価格（税込）" %>
+    <%= f.text_field :price, placeholder: "#{}" %>
   </div>
   <div>
     <%= f.label "star" %>
     ★★★★★
   </div>
   <%= f.submit "変更を保存" %>
+  <% if @post.user == current_user %>
+    <%= link_to "削除する", post_path(@post.id), method: :delete, class:"btn btn-danger px-4" %>
+  <% end %>
 <% end %>
