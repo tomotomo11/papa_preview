@@ -4,8 +4,9 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   #管理者側namespaceのルーティング
-  #    get 'top' => 'homes#top', as: 'top'
-
+  namespace :admin do
+    get 'top' => 'homes#top', as: 'top'
+  end
 
 
   #顧客用 URL /users/sign_in ...
