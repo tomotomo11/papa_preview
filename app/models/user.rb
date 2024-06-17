@@ -26,6 +26,14 @@ class User < ApplicationRecord
     end
   end
 
+  def self.search(keyword)
+    if keyword.present?
+      User.where(['CONCAT_WS(" ", last_name, first_name) LIKE ?', "%#{keyword}%"])
+    else
+      User.all
+    end
+  end
+
 
   def full_name
     (last_name || "") + " " + (first_name || "")

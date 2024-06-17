@@ -11,6 +11,14 @@ class Post < ApplicationRecord
     validates :body
   end
 
+  def self.search(keyword)
+    if keyword.present?
+      Post.where(['name LIKE ?', "%#{keyword}%"])
+    else
+      Post.all
+    end
+  end
+
 
   def get_image(width, height)
     unless image.attached?

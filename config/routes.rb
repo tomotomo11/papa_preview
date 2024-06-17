@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     patch '/users/information' => 'users#update'
     get '/users/unsubscribe' => 'users#unsubscribe', as: 'confirm_unsubscribe'
     patch '/users/withdraw' => 'users#withdraw', as: 'withdraw_user'
-    get '/searches' => 'searches#search'
+    get '/search' => 'searches#search'
     resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy]
     resources :users, only: [:index, :show]
     resource :favotires, only: [:index]
