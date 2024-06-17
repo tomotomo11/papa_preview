@@ -7,7 +7,7 @@ class Public::PostCommentsController < ApplicationController
     redirect_to post_path(post)
   end
 
-  provate
+  private
   def post_comment_params
     params.require(:post_comment).permit(:body)
   end

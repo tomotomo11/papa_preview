@@ -25,7 +25,7 @@
                 <p>商品名:<%= post.name %></p>
                 <p>★★★★★</p>
                 <p>一言：<%= post.title %></p>
-                <p>♥：１　コメント：0</p>
+                <p>♥：１　<%= link_to "コメント数:#{post.post_comments.count}", post_path(post.id) %></p>
               </div>
             <% end %>
             </div>
