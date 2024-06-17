@@ -2,7 +2,7 @@
 
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  before_action :authenticate_user!, expect: [:top, :about, :posts]
+  before_action :authenticate_user!, expect: [:top, :about]
   before_action :reject_inactive_user, only: [:create]
 
   def after_sign_in_path_for(resource)
@@ -12,14 +12,14 @@ class Public::SessionsController < Devise::SessionsController
   def after_sign_out_path_for(resource)
     about_path
   end
-  
+
   def guest_sign_in
     user = User.guest
     sign_in user
     redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
-    
-    
+
+
   # GET /resource/sign_in
   # def new
   #   super
@@ -44,7 +44,7 @@ class Public::SessionsController < Devise::SessionsController
 
   private
 
-  def reject_inactive_user #「reject_inactive_customer」は、無効な顧客を拒否するために使用するメソッド
+  def reject_inactive_user #「reject_inactive_user」は、無効な顧客を拒否するために使用するメソッド
     @user = User.find_by(email: params[:user][:email])
     if @user #もしuserレコードが存在するなら「真」
       if @user.valid_password?(params[:user][:password]) && !@user.is_active #パスワードが正しく、かつ顧客が退会している場合
