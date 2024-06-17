@@ -1,9 +1,5 @@
 class Public::PostsController < ApplicationController
-<<<<<<< HEAD
-  before_action :authenticate_user!, except: [:index, :show,]
-=======
   before_action :authenticate_user!, except: [:index, :show]
->>>>>>> 90a3deca970790f69384c20b37e93d441ff435a2
 
   def index
     @posts = Post.page(params[:page]).per(10)
