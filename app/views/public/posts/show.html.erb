@@ -15,14 +15,14 @@
           <p>テスト</p>
         </div>
         <div class="col-9 md-9">
-          <h1 class="mb-5">投稿詳細</h1>
+          <h3 class="mb-5">投稿詳細</h3>
             <div class="row">
               <%= image_tag @post.get_image(500, 300) %>
               <p>投稿者：<%= link_to "#{@post.user.full_name}", user_path(@post.user.id) %></p>
               <p>商品名：<%= @post.name %></p>
               <p>一言：<%= @post.title %></p>
               <p>商品説明：<%= @post.body %></p>
-              <p>♥：1　コメント：3</p>
+              <p>♥：1　コメント件数：<%= @post.post_comments.count %></p>
               <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
               <%= link_to "一覧へ戻る", posts_path %>
               <% if @post.user == current_user %>
@@ -30,6 +30,26 @@
                 <%= link_to "削除する", post_path(@post.id), method: :delete, class:"btn btn-danger px-4" %>
               <% end %>
             </div>
+          <div>
+            <h4>レビューへのコメント</h4>
+            <%= form_with model: [@post, @post_comment] do |f| %>
+              <p><%=f.text_area :body, rows: '3', placeholder: "ここにコメントしてください" %></p>
+              <p><%= f.submit "コメントする" %></p>
+            <% end %>
+          </div>
+          <div>
+            <h4>コメント一覧</h4>
+            <% @post.post_comments.each do |post_comment| %>
+              <p>
+                <%= post_comment.user.full_name %><br />
+                <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+              </p>
+              <p><%= post_comment.body %></p>
+              <% if post_comment.user == current_user %>
+                <%= link_to "削除する", post_post_comment_path(post_comment.post, post_comment), method: :delete, class:"btn btn-danger px-4" %>
+              <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
