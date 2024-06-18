@@ -7,14 +7,16 @@ class Admin::GenresController < ApplicationController
   end
 
   def create
-    genre = Genre.new(genre_params)
-    genre.save
-    redirect_to admin_genres_path
+    @genre = Genre.new(genre_params)
+    if @genre.save
+      redirect_to admin_genres_path
+    else
+      redirect_back(fallback_location: admin_genres_path)
+    end
   end
 
   def edit
     @genre = Genre.find(params[:id])
-
   end
 
   def update
@@ -22,7 +24,7 @@ class Admin::GenresController < ApplicationController
     if @genre.update(genre_params)
       redirect_to admin_genres_path
     else
-      render :edit
+      redirect_back(fallback_location: admin_genres_path)
     end
   end
 
