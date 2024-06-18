@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get 'top' => 'homes#top', as: 'top'
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
     resources :users, only: [:index, :edit, :show, :update]
+    resources :posts, only: [:index, :destroy]
   end
 
 
