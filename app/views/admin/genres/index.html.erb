@@ -1,2 +1,36 @@
 <h3>ジャンル一覧・追加</h3>
-<%= form_with , @genre
+<%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
+  <%= f.label :name, "ジャンル名" %>
+  <%= f.text_field :name, placeholder: "ジャンル名" %>
+	<%= f.radio_button :is_active, true %>
+	<%= f.label :is_active, "有効" %>
+	<%= f.radio_button :is_active, false %>
+	<%= f.label :is_active, "無効" %>
+  <%= f.submit "新規登録" %>
+<% end %>
+
+<h4>ジャンル</h4>
+<table>
+  <thead>
+    <th>ジャンル名</th>
+    <th>状態</th>
+    <th></th>
+    <th></th>
+  </thead>
+    <tbody>
+    <% @genres.each do |genre| %>
+      <tr>
+        <td><%= genre.name %></td>
+        <td>
+          <% if genre.is_active? %>
+            <span>有効</span>
+          <% else %>
+            <span>無効</span>
+          <% end %>
+        </td>
+        <td><%= link_to "編集する", edit_admin_genre_path(genre), class: "btn btn-sm btn-success" %></td>
+        <th><%= link_to "削除する", admin_genre_path(genre), method: :delete, class: "btn btn-sm btn-danger" %></th>
+      </tr>
+    <% end %>
+    </tbody>
+</table>

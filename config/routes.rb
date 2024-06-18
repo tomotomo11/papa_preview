@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   #管理者側namespaceのルーティング
   namespace :admin do
     get 'top' => 'homes#top', as: 'top'
-    resources :genre, only: [:index, :create, :edit, :update, :destroy]
+    resources :genres, only: [:index, :create, :edit, :update, :destroy]
   end
 
 
