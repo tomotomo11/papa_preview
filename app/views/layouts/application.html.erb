@@ -23,12 +23,7 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div>
-            <!-- 会員がログインしている時、ログイン中の会員の氏名を表示 -->
-            <% if user_signed_in? %>
-              <p class="ml-4 mt-4">ようこそ、<%= current_user.last_name %>さん！</p>
-            <% end %>
-          </div>
+
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <!-- 会員がログインした時の表示 -->
@@ -87,8 +82,16 @@
           </div>
         </div>
       </nav>
-      <div class="d-flex justify-content-end mb-2">
-        <%= render partial: 'layouts/form' %>
+      <div class="container d-flex wrap">
+        <div class="col-4 ml-4">
+          <!-- 会員がログインしている時、ログイン中の会員の氏名を表示 -->
+          <% if user_signed_in? %>
+            <p class="ml-4">ようこそ、<%= current_user.last_name %>さん！</p>
+          <% end %>
+        </div>
+        <div class="col-7 offset-1 mb-2 d-flex justify-content-end">
+          <%= render partial: 'layouts/form' %>
+        </div>
       </div>
     </header>
     <main>
@@ -97,6 +100,6 @@
       <% end %>
       <%= yield %>
     </main>
-    <footer>Copyright © 2024. Papa_Preview.</footer>
+    <footer class="d-flex justify-content-center mt-5">Copyright © 2024. Papa_Preview.</footer>
   </body>
 </html>
