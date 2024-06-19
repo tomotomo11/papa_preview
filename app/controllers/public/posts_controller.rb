@@ -4,7 +4,10 @@ class Public::PostsController < ApplicationController
   def index
     @posts = Post.page(params[:page]).per(10)
     @genre = Genre.all
-
+    if params[:genre_id].present?
+      @genre = Genre.find(params[:genre_id])
+      @posts = @genre.posts
+    end
   end
 
   def new
