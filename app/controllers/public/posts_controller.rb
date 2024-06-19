@@ -3,6 +3,8 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.page(params[:page]).per(10)
+    @genre = Genre.all
+
   end
 
   def new
@@ -23,6 +25,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @genre = Genre.all
     @post_comment = PostComment.new
   end
 

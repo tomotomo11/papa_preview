@@ -1,0 +1,13 @@
+<h3>レビュー一覧</h3>
+  <% @posts.each do |post| %>
+    <div>
+    <%= image_tag post.get_image(250, 150) %>
+    <p><%= @users.find(post.user_id).full_name %></p>
+    <p>商品名:<%= post.name %></p>
+    <p>★★★★★</p>
+    <p>一言：<%= post.title %></p>
+    <p>商品説明：<%= post.body %></p>
+    <p>♥：１　<%= "コメント数:#{post.post_comments.count}" %></p>
+    <%= link_to '削除', admin_post_path(post.id), method: :delete, data: { confirm: "本当に削除しますか?" }, class: "btn btn-sm btn-danger" %>
+    </div>
+  <% end %>
