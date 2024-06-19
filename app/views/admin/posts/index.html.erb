@@ -5,6 +5,7 @@
     <p><%= @users.find(post.user_id).full_name %></p>
     <p>商品名:<%= post.name %></p>
     <p>★★★★★</p>
+    <p>ジャンル：<%= post.genre.name %></p>
     <p>一言：<%= post.title %></p>
     <p>商品説明：<%= post.body %></p>
     <p>♥：１　<%= "コメント数:#{post.post_comments.count}" %></p>
