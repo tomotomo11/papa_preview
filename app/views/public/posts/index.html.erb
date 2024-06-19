@@ -13,7 +13,22 @@
           <p>テスト</p>
           <p>テスト</p>
           <p>テスト</p>
+          <table>
+            <thead>
+              <th>商品カテゴリ</th>
+            </thead>
+            <tbody>
+              <% @genre.each do |genre| %>
+              <tr>
+                <td>
+                  <%= link_to genre.name, posts_path(genre_id: genre.id) %>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
         </div>
+
         <div class="col-9 md-9">
           <h1 class="mb-5">投稿一覧</h1>
             <div class="row d-flex flex-wrap">
@@ -24,6 +39,7 @@
                 <% end %>
                 <p>商品名:<%= post.name %></p>
                 <p>★★★★★</p>
+                <p>ジャンル：<%= post.genre.name %></p>
                 <p>一言：<%= post.title %></p>
                 <p>♥：１　<%= link_to "コメント数:#{post.post_comments.count}", post_path(post.id) %></p>
               </div>
