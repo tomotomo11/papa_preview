@@ -12,7 +12,7 @@
   </head>
 
   <body>
-    <header class="shadow-sm">
+    <header class="border-bottom border-dark">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <div>
@@ -23,12 +23,7 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div>
-            <!-- 会員がログインしている時、ログイン中の会員の氏名を表示 -->
-            <% if user_signed_in? %>
-              <p class="ml-4 mt-4">ようこそ、<%= current_user.last_name %>さん！</p>
-            <% end %>
-          </div>
+
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <!-- 会員がログインした時の表示 -->
@@ -40,7 +35,7 @@
                   <%= link_to "新規投稿", new_post_path, class: 'nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "投稿一覧", posts_path, class: 'nav-link text-dark' %>
+                  <%= link_to "みんなの投稿", posts_path, class: 'nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
                   <%= link_to "いいねした投稿", "#", class: 'nav-link text-dark' %>
@@ -55,26 +50,26 @@
               <!-- 管理者がログインした時の表示 -->
               <% elsif admin_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to "会員一覧", admin_users_path, class: 'nav-link text-dark' %>
+                  <%= link_to "会員一覧", admin_users_path, class: 'nav-link text-dark border rounded mr-2' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark' %>
+                  <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark border rounded mx-2' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "レビュー一覧", admin_posts_path, class: 'nav-link text-dark' %>
+                  <%= link_to "レビュー一覧", admin_posts_path, class: 'nav-link text-dark border rounded mx-2' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark border rounded ml-2' %>
                 </li>
               <% else %>
                 <li class="nav-item">
                   <%= link_to "About", about_path, class: 'nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "投稿一覧", posts_path, class: 'nav-link text-dark' %>
+                  <%= link_to "みんなの投稿", posts_path, class: 'nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+                  <%= link_to "会員登録", new_user_registration_path, class: 'nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
                   <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
@@ -87,8 +82,16 @@
           </div>
         </div>
       </nav>
-      <div class="d-flex justify-content-end mb-2">
-        <%= render partial: 'layouts/form' %>
+      <div class="container d-flex wrap">
+        <div class="col-4 ml-4">
+          <!-- 会員がログインしている時、ログイン中の会員の氏名を表示 -->
+          <% if user_signed_in? %>
+            <p class="ml-4">ようこそ、<%= current_user.last_name %>さん！</p>
+          <% end %>
+        </div>
+        <div class="col-7 offset-1 mb-2 d-flex justify-content-end">
+          <%= render partial: 'layouts/form' %>
+        </div>
       </div>
     </header>
     <main>
@@ -97,6 +100,6 @@
       <% end %>
       <%= yield %>
     </main>
-    <footer>Copyright © 2024. Papa_Preview.</footer>
+    <footer class="d-flex justify-content-center mt-5 border-top border-dark">Copyright © 2024. Papa_Preview.</footer>
   </body>
 </html>
