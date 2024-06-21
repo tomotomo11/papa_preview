@@ -4,6 +4,7 @@ class Public::SearchesController < ApplicationController
   def search
     @range = params[:range]
     @keyword = params[:keyword]
+    @post_comments = PostComment.all
 
     if @range == "Post"
       @posts = Post.search(@keyword)
