@@ -1,45 +1,36 @@
 <div class="container">
   <div class="row">
-    <div class="col-3 offset-1 bg-light text-center">
-      <h3>ユーザー詳細ページ</h3>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-5 mx-auto">
-      <table class='table table-hover'>
-        <tbody>
-          <tr>
-            <td>ユーザー名</td>
-            <td><%= @user.full_name %></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="col-6 offset-1 text-center">
+      <h3><%= @user.full_name %>さんの詳細ページ</h3>
     </div>
   </div>
   <div class="col-md-10">
     <h3 class="mb-4 mt-3">投稿一覧</h3>
-      <div class="card">
+    <% @posts.each do |post| %>
+      <div class="card mb-4"> <!-- Add mb-4 for margin-bottom -->
         <div class="row no-gutters">
-          <% @posts.each do |post| %>
-            <div class="col-4">
-              <%= link_to post_path(post.id) do %>
-                <%= image_tag post.get_image(250, 150) %>
-              <% end %>
-            </div>
-            <div class="col-8">
+          <div class="col-12 col-md-4"> <!-- Change col-4 to col-12 col-md-4 for responsiveness -->
+            <%= link_to post_path(post.id) do %>
+              <%= image_tag post.get_image(250, 150), class: 'img-fluid' %> <!-- Add img-fluid class for responsive image -->
+            <% end %>
+            <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
+          </div>
+          <div class="col-12 col-md-8"> <!-- Change col-8 to col-12 col-md-8 for responsiveness -->
             <div class="card-body">
               <h5 class="card-title"><span class="yellow-bg">商品名:<%= post.name %></span>　★★★★</h5>
               <p>ジャンル：<%= post.genre.name %></p>
               <p>一言：<%= post.title %></p>
               <p>♥：１　<%= link_to "コメント数:#{post.post_comments.count}", post_path(post.id) %></p>
-              <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
-              <%= link_to '詳しく見る', post_path(post.id), class: "btn btn-sm btn-primary" %>
+              <div class="text-right">
+                <%= link_to '詳しく見る', post_path(post.id), class: "btn btn-sm btn-primary px-4 mr-3" %>
+              </div>
             </div>
-          <% end %>
-          <div>
-            <%= paginate @posts %>
           </div>
         </div>
       </div>
+    <% end %>
+    <div>
+      <%= paginate @posts %>
+    </div>
   </div>
 </div>

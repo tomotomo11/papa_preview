@@ -33,11 +33,11 @@
                 <%= image_tag post.get_image(350, 250), class: "card-img-top card-link" %>
               <% end %>
               <div class="card-body">
-                <p>商品名: <%= post.name %> ★★★★★</p>
+                <h5 class="card-title"><span class="yellow-bg">商品名: <%= post.name %></span></h5>
+                <p>星星星　♥: １ <%= link_to "コメント数:#{post.post_comments.count}", post_path(post.id) %></p>
                 <p>一言: <%= post.title %></p>
-                <p>投稿者: <%= post.user.full_name %></p>
-                <p>♥: １ <%= link_to "コメント数:#{post.post_comments.count}", post_path(post.id) %></p>
                 <p>ジャンル: <%= post.genre.name %></p>
+                <p>投稿者: <%= post.user.full_name %>　<%= link_to "詳細へ", post_path(post.id), class: "btn btn-sm btn-primary" %></p>
               </div>
             </div>
           </div>
