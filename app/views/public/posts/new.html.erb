@@ -1,30 +1,45 @@
-<h1>新規投稿作成</h1>
-<%= render '/layouts/error_messages', post: @post %>
-
-<%= form_with model: @post, method: :post do |f| %>
-  <div>
-    <%= f.label :image, "商品画像" %>
-    <%= f.file_field :image, accept: "image/*" %>
+<div class="container">
+  <div class="row py-4">
+    <div class="col-3 offset-1 bg-light text-center">
+      <h3>新規投稿作成</h3>
+    </div>
   </div>
-  <div>
-    <%= f.label :name, "商品名" %>
-    <%= f.text_field :name %>
+  <%= render '/layouts/error_messages', post: @post %>
+  <div class="row">
+    <div class="col">
+      <%= form_with model: @post, method: :post do |f| %>
+      <div class="row-auto justify-content-center mt-4">
+        <table class="mx-auto col-9">
+          <tr>
+            <td><%= f.label :image, "商品画像" %></td>
+            <td><%= f.file_field :image, accept: "image/*", class: "ml-4 mb-3 w-100" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :name, "商品名" %></td>
+            <td><%= f.text_field :name, placeholder: '商品名', class: "ml-4 mb-3 w-100" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :title, "一言" %></td>
+            <td><%= f.text_field :title, placeholder: 'ここに見出しの一言をお願いします', class: "ml-4 mb-3 w-100" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :body, "商品説明（レビュー）" %></td>
+            <td><%= f.text_area :body, placeholder: 'ここにレビュー文をお願いします', class: "ml-4 mb-3 w-100", style: "height: 140px" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :genre, "ジャンル" %></td>
+            <td><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: '-- 選択してください --', class: "ml-4 mb-3 w-100" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :price, "購入価格（税込）" %></td>
+            <td><%= f.text_field :price, placeholder: "1000", class: "ml-4 mb-3 w-100" %> 円</td>
+          </tr>
+        </table>
+        <div class="mx-auto col-2">
+          <%= f.submit '新規投稿', class: "btn btn-success col py-2 my-2", style: "font-weight: bold; font-size: 18px;" %>
+        </div>
+      </div>
+      <% end %>
+    </div>
   </div>
-  <div>
-    <%= f.label :title, "一言" %>
-    <%= f.text_field :title %>
-  </div>
-  <div>
-    <%= f.label :body, "商品説明（レビュー）" %>
-    <%= f.text_area :body %>
-  </div>
-  <div>
-    <%= f.label :genre, "ジャンル" %>
-    <%= f.collection_select :genre_id, Genre.all, :id, :name %>
-  </div>
-  <div>
-    <%= f.label :price, "購入価格（税込）" %>
-    <%= f.text_field :price %>
-  </div>
-  <%= f.submit '新規投稿' %>
-<% end %>
+</div>
