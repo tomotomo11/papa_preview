@@ -32,6 +32,7 @@
   margin-bottom: 0.5rem;
 }
 
+/* ------------------main--------------------- */
 .text-overlay {
   position: absolute;
   top: 100px;
@@ -43,3 +44,20 @@
   font-family: '秀英にじみ丸ゴシック B', 'A P-OTF 秀英にじみ丸ゴ Std', sans-serif;
   font-size: 3.4rem;
 }
+
+/* ------------------main--------------------- */
+/* ------------------posts_show--------------------- */
+
+.min-three-lines-height {
+  min-height: calc(1.5em * 3); /* 3行分の最低高さ */
+  line-height: 1.5em; /* 行の高さ */
+}
+
+.comment-body {
+  min-height: 3em; /* 2行分の高さ */
+  width: 90%; /* 横幅いっぱいに広げる */
+  overflow-y: auto; /* コンテンツが2行を超える場合にスクロール */
+  margin: 0; /* <p>タグのデフォルトの余白をなくす */
+}
+
+/* ------------------posts_show--------------------- */
