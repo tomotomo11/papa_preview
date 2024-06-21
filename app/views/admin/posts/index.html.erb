@@ -1,25 +1,30 @@
-<div class=="container">
+<div class="container">
   <div class="row">
-    <div class="col-2 bg-light text-center">
+    <div class="col-12 bg-light text-center mb-3">
       <h3>レビュー一覧</h3>
     </div>
   </div>
   <div class="row">
     <% @posts.each do |post| %>
-    <div class="card mb-3" style="max-width: 740px;">
-      <div class="row no-gutters">
-        <div class="col-md-4 col-4">
-          <%= image_tag post.get_image(250, 250) %>
-        </div>
-        <div class="col-md-8 col-8">
-          <div class="card-body">
-            <h5 class="card-title">商品名:<%= post.name %> ★★★★★</h5>
-            <p>一言：<%= post.title %></p>
-            <p><%= @users.find(post.user_id).full_name %>さん</p>
+    <div class="col-12 col-md-6 mb-3">
+      <div class="card">
+        <div class="row no-gutters">
+          <div class="col-4">
+            <%= image_tag post.get_image(250, 250), class: "img-fluid" %>
+
+              <p class="small-text"><%= @users.find(post.user_id).full_name %>さん</p>
             <p>ジャンル：<%= post.genre.name %></p>
-            <p>商品説明：<%= post.body %></p>
-            <p>♥：１　<%= "コメント数:#{post.post_comments.count}" %></p>
-            <%= link_to '削除', admin_post_path(post.id), method: :delete, data: { confirm: "本当に削除しますか?" }, class: "btn btn-sm btn-danger" %>
+          </div>
+          <div class="col-8">
+            <div class="card-body">
+              <h5 class="card-title yellow-bg">商品名: <%= post.name %> ★★★★★</h5>
+              <p>一言：<%= post.title %></p>
+              <p>商品説明：<%= post.body %></p>
+              <p>♥：1　<%= "コメント数: #{post.post_comments.count}" %></p>
+              <div class="text-right">
+                <%= link_to '削除', admin_post_path(post.id), method: :delete, data: { confirm: "本当に削除しますか?" }, class: "btn btn-sm btn-danger" %>
+              </div>
+            </div>
           </div>
         </div>
       </div>

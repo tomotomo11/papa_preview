@@ -35,24 +35,23 @@
       <h3>投稿一覧<h3>
     </div>
   </div>
-  
-  
-<% @posts.each do |post| %>
-  <%= link_to post_path(post.id) do %>
-    <%= image_tag post.get_image(250, 150) %><br/>
-    <%= post.title %>
-  <% end %>
-<% end %>
 
-<div>
-  <%= paginate @posts %>
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="row">
+        <% @posts.each do |post| %>
+          <div class="col-md-3 col-sm-6 col-12 my-3">
+            <%= link_to post_path(post.id) do %>
+              <%= image_tag post.get_image(250, 150), class: 'img-fluid' %><br/>
+              <%= post.title %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <%= paginate @posts %>
+  </div>
 </div>
-
-
-
-
-</div>
-
-
-
-
