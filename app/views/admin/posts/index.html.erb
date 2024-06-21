@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 bg-light text-center mb-3">
+      <h3>レビュー一覧</h3>
+    </div>
+  </div>
+  <div class="row">
+    <% @posts.each do |post| %>
+    <div class="col-12 col-md-6 mb-3">
+      <div class="card">
+        <div class="row no-gutters">
+          <div class="col-4">
+            <%= image_tag post.get_image(250, 250), class: "img-fluid" %>
+
+              <p class="small-text"><%= @users.find(post.user_id).full_name %>さん</p>
+            <p>ジャンル：<%= post.genre.name %></p>
+          </div>
+          <div class="col-8">
+            <div class="card-body">
+              <h5 class="card-title yellow-bg">商品名: <%= post.name %> ★★★★★</h5>
+              <p>一言：<%= post.title %></p>
+              <p>商品レビュー：<%= post.body %></p>
+              <p>♥：1　<%= "コメント数: #{post.post_comments.count}" %></p>
+              <div class="text-right">
+                <%= link_to '削除', admin_post_path(post.id), method: :delete, data: { confirm: "本当に削除しますか?" }, class: "btn btn-sm btn-danger" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

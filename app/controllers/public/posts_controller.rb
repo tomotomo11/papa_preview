@@ -2,7 +2,12 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @posts = Post.page(params[:page]).per(10)
+    @post = Post.page(params[:page]).per(10)
+    @genres = Genre.all
+    if params[:genre_id].present?
+      @genre = Genre.find(params[:genre_id])
+      @posts = @genre.posts
+    end
   end
 
   def new
@@ -23,6 +28,8 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @genre = Genre.all
+    @post_comment = PostComment.new
   end
 
   def edit

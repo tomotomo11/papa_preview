@@ -1,1 +1,33 @@
-<h1>Topページだよ</h1>
+<div class="container">
+  <div class="row py-5 mx-5 justify-content-center position-relative">
+    <%= image_tag "main_image.jpg", size: "1100x650", style: "opacity: 0.7", class: "mx-auto img-fluid shadow-sm" %>
+    <div class="text-overlay">
+      <h3>
+        子育てパパが喜ぶ<br>
+        プレゼントって？
+      </h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4 bg-light px-2 mx-2 mt-3 mb-4 text-center">
+      <h3>みんなの投稿<h3>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="row">
+        <% @posts.each do |post| %>
+          <div class="col-md-3 col-sm-6 col-12 my-3">
+            <%= link_to post_path(post.id) do %>
+              <%= image_tag post.get_image(250, 150), class: 'img-fluid' %><br/>
+              <%= post.title %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

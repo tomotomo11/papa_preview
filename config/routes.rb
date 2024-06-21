@@ -4,8 +4,12 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   #管理者側namespaceのルーティング
-  #    get 'top' => 'homes#top', as: 'top'
-
+  namespace :admin do
+    get 'top' => 'homes#top', as: 'top'
+    resources :genres, only: [:index, :create, :edit, :update, :destroy]
+    resources :users, only: [:index, :edit, :show, :update]
+    resources :posts, only: [:index, :destroy]
+  end
 
 
   #顧客用 URL /users/sign_in ...
@@ -22,8 +26,10 @@ Rails.application.routes.draw do
     patch '/users/information' => 'users#update'
     get '/users/unsubscribe' => 'users#unsubscribe', as: 'confirm_unsubscribe'
     patch '/users/withdraw' => 'users#withdraw', as: 'withdraw_user'
-    get '/searches' => 'searches#search'
-    resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy]
+    get '/search' => 'searches#search'
+    resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
+      resources :post_comments, only: [:create, :destroy]
+    end
     resources :users, only: [:index, :show]
     resource :favotires, only: [:index]
   end

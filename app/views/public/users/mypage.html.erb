@@ -1,34 +1,57 @@
-<h3>マイページ</h3>
-<h4>登録情報<%= link_to 'プロフィールを編集する', edit_information_path %></h4>
+<div class="container">
+  <div class="row">
+    <div class="col-3 my-4 text-center">
+      <h3>マイページ</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2 px-2 mx-2 text-center">
+      <h4>登録情報</h4>
+    </div>
+    <%= link_to 'プロフィールを編集する', edit_information_path, class: "ml-5 btn btn-sm btn-success" %>
+  </div>
+  <div class="row mt-4">
+    <div class="col-7 mr-auto">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <td class="bg-light">氏名</td>
+            <td><%= @user.full_name %></td>
+          </tr>
+          <tr>
+            <td class="bg-light">カナ</td>
+            <td><%= @user.full_name_kana %></td>
+          </tr>
+          <tr>
+            <td class="bg-light">メールアドレス</td>
+            <td><%= @user.email %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2 px-2 mx-2 mt-3 mb-4 text-center">
+      <h3>投稿一覧<h3>
+    </div>
+  </div>
 
-<table>
-  <thead>
-    <th></th>
-    <th></th>
-  </thead>
-  <tbody>
-    <tr>
-      <td>氏名</td>
-      <td><%= @user.full_name %></td>
-    </tr>
-    <tr>
-      <td>カナ</td>
-      <td><%= @user.full_name_kana %></td>
-    </tr>
-    <tr>
-      <td>メールアドレス</td>
-      <td><%= @user.email %></td>
-    </tr>
-  </tbody>
-</table>
-<h3>投稿一覧<h3>
-<% @posts.each do |post| %>
-  <%= link_to post_path(post.id) do %>
-    <%= image_tag post.get_image(250, 150) %><br/>
-    <%= post.title %>
-  <% end %>
-<% end %>
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="row">
+        <% @posts.each do |post| %>
+          <div class="col-md-3 col-sm-6 col-12 my-3">
+            <%= link_to post_path(post.id) do %>
+              <%= image_tag post.get_image(250, 150), class: 'img-fluid' %><br/>
+              <%= post.title %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-<div>
-  <%= paginate @posts %>
+  <div>
+    <%= paginate @posts %>
+  </div>
 </div>

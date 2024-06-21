@@ -1,20 +1,27 @@
-<h3>ユーザー一覧</h3>
-
-<table>
-  <thead>
-    <th>ユーザー名</th>
-    <th>投稿数</th>
-    <th>いいね</th>
-    <th>コメント</th>
-  </thead>
-  <% @users.each do |user| %>
-  <tbody>
-    <tr>
-      <td><%= link_to "#{user.last_name + user.first_name}", user_path(user.id) %></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-  <% end %>
-</table>
+<div class="container">
+  <div class="row py-4 pr-3">
+    <div class="col-3 offset-1 text-center">
+      <h3>ユーザー一覧</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-7 mx-auto">
+      <table class='table table-hover'>
+        <thead>
+          <th>ユーザー名</th>
+          <th>投稿数</th>
+          <th>いいね</th>
+        </thead>
+        <% @users.each do |user| %>
+        <tbody>
+          <tr>
+            <td><%= link_to "#{user.last_name + user.first_name}", user_path(user.id) %></td>
+            <td><%= user.posts.count %></td>
+            <td></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,41 +1,43 @@
-<h3>プロフィール編集</h3>
+<div class="container">
+  <div class="row py-4">
+    <div class="col-3 offset-1 text-center">
+      <h3>プロフィール編集</h3>
+    </div>
+  </div>
 
-<% if @user.errors.any? %>
-  <%= @user.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @user.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+  <% if @user.errors.any? %>
+    <%= @user.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class="row">
+    <div class="col">
+    <%= form_with model: @user, url: users_information_path, method: :patch do |f| %>
+      <table class="mx-auto col-9">
+        <tr>
+          <td><%= f.label "氏名" %></td>
+          <td><%= f.label :last_name, "(姓)" %> <%= f.text_field :last_name, placeholder: "#{@user.last_name}", class: "ml-4 mb-3 w-75" %></td>
+          <td><%= f.label :first_name, "(名)" %> <%= f.text_field :first_name, placeholder: "#{@user.first_name}", class: "ml-4 mb-3 w-75" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label "カナ" %></td>
+          <td><%= f.label :last_name_kana, "(セイ)" %> <%= f.text_field :last_name_kana, placeholder: "#{@user.last_name_kana}", class: "ml-3 mb-3 w-75" %></td>
+          <td><%= f.label :first_name_kana, "(メイ)" %> <%= f.text_field :first_name_kana, placeholder: "#{@user.first_name_kana}", class: "ml-3 mb-3 w-75" %></td>
+        </tr>
+        <tr>
+          <td> <%= f.label :email, "メールアドレス" %></td>
+          <td colspan="2"><%= f.text_field :email, placeholder: "#{@user.email}", class: "ml-5 mb-3 w-75" %></td>
+          <td></td>
+        </tr>
+      </table>
+      <div class="mx-auto col-3 d-flex flex-row">
+        <%= f.submit "変更内容を保存する", class:"btn btn-success col py-2 my-2 mr-3" %>
+        <%= link_to "退会する", confirm_unsubscribe_path, class:"btn btn-danger col-5 py-2 my-2" %>
+      </div>
     <% end %>
-  </ul>
-<% end %>
-
-<%= form_with model: @user, url: users_information_path, method: :patch do |f| %>
-  <table>
-    <thead>
-      <th></th>
-      <th></th>
-      <th></th>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= f.label "氏名" %></td>
-        <td><%= f.label :last_name, "(姓)" %> <%= f.text_field :last_name, placeholder: "#{@user.last_name}" %></td>
-        <td><%= f.label :first_name, "(名)" %> <%= f.text_field :first_name, placeholder: "#{@user.first_name}" %></td>
-      </tr>
-      <tr>
-        <td><%= f.label "カナ" %></td>
-        <td><%= f.label :last_name_kana, "(セイ)" %> <%= f.text_field :last_name_kana, placeholder: "#{@user.last_name_kana}" %></td>
-        <td><%= f.label :first_name_kana, "(メイ)" %> <%= f.text_field :first_name_kana, placeholder: "#{@user.first_name_kana}" %></td>
-      </tr>
-      <tr>
-        <td> <%= f.label :email, "メールアドレス" %></td>
-        <td colspan="2"><%= f.text_field :email, placeholder: "#{@user.email}" %></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><%= f.submit "変更内容を保存する" %></td>
-        <td><%= link_to "退会する", confirm_unsubscribe_path, class:"btn btn-danger px-4" %></td>
-      </tr>
-    </tbody>
-  </table>
-<% end %>
+    </div>
+  </div>
+</div>

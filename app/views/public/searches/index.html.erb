@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-7 mx-auto">
+      <table class="table table-hover table-inverse">
+      <!--検索対象モデルがPostの時 -->
+        <% if @range == "Post" %>
+        <h2>"<%= @keyword %>"の検索結果</h2>
+        <thead>
+          <tr>
+            <th>商品画像</th>
+            <th>商品名</th>
+            <th>いいね</th>
+            <th>スター</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td>
+              <%= link_to post_path(post.id) do %>
+                <%= image_tag post.get_image(50, 50) %>
+              <% end %>
+            </td>
+            <td><%= post.name %></td>
+            <td>1</td>
+            <td>1</td>
+          </tr>
+        <% end %>
+        </tbody>
+
+        <% else %>
+        <!--検索対象モデルがPostではない時(= 検索対象モデルがUserの時) -->
+
+        <h2>"<%= @keyword %>"の検索結果</h2>
+        <thead>
+          <tr>
+            <th>ユーザー名</th>
+            <th>投稿数</th>
+            <th>いいね</th>
+            <th>投稿にコメントした数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= link_to "#{user.last_name + user.first_name}", user_path(user.id) %></td>
+              <td><%= user.posts.count %></td>
+              <td>1</td>
+              <td><%= user.post_comments.count %></td>
+            </tr>
+          <% end %>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

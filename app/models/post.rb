@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :user
+  belongs_to :genre
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :tag_relationships, dependent: :destroy
@@ -9,6 +10,14 @@ class Post < ApplicationRecord
     validates :name
     validates :title
     validates :body
+  end
+
+  def self.search(keyword)
+    if keyword.present?
+      Post.where(['name LIKE ?', "%#{keyword}%"])
+    else
+      Post.all
+    end
   end
 
 
