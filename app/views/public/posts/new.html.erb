@@ -37,6 +37,34 @@
               <span class="ml-2">円</span>
             </td>
           </tr>
+          <tr>
+            <% if @post.id.nil? %>
+              <tr class="form-group" id="star">
+                <td><%= f.label :star %></td>
+                <td><%= f.hidden_field :star, id: :review_star, class: 'form-control' %></td>
+                <div id="post_raty"></div>
+              </tr>
+              <script>
+                $(document).on('turbolinks:load', function() {
+                  let elem = document.querySelector('#post_raty');
+                  if (elem == null) return;
+
+                  elem.innerHTML = ""
+                  let opt = {
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    starHalf: "<%= asset_path('star-half.png') %>",
+                    scoreName: 'post[star]',
+                  };
+                  raty(elem, opt);
+                });
+              </script>
+            <% else %>
+              <div class="form-group">
+                <%= render "static_rate", post: post %>
+              </div>
+            <% end %>
+          </tr>
         </table>
         <div class="mx-auto col-2">
           <%= f.submit '新規投稿', class: "btn btn-success col py-2 my-2", style: "font-weight: bold; font-size: 18px;" %>
