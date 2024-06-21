@@ -1,30 +1,45 @@
-<h3>ユーザー詳細ページ</h3>
-<table>
-  <tbody>
-    <tr>
-      <td>ユーザー名</td>
-      <td><%= @user.full_name %></td>
-    </tr>
-  </tbody>
-</table>
-
-
-<h3>投稿一覧</h3>
-  <% @posts.each do |post| %>
-    <div>
-      <%= link_to post_path(post.id) do %>
-        <%= image_tag post.get_image(250, 150) %>
-      <% end %>
-    <p>商品名:<%= post.name %></p>
-    <p>ジャンル：<%= post.genre.name %></p>
-    <p>★★★★★</p>
-    <p>一言：<%= post.title %></p>
-    <p>♥：１　<%= link_to "コメント数:#{post.post_comments.count}", post_path(post.id) %></p>
-    <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
-    <%= link_to '詳しく見る', post_path(post.id), class: "btn btn-sm btn-primary" %>
+<div class="container">
+  <div class="row">
+    <div class="col-3 offset-1 bg-light text-center">
+      <h3>ユーザー詳細ページ</h3>
     </div>
-  <% end %>
-
-<div>
-  <%= paginate @posts %>
+  </div>
+  <div class="row">
+    <div class="col-5 mx-auto">
+      <table class='table table-hover'>
+        <tbody>
+          <tr>
+            <td>ユーザー名</td>
+            <td><%= @user.full_name %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <h3 class="mb-4 mt-3">投稿一覧</h3>
+      <div class="card">
+        <div class="row no-gutters">
+          <% @posts.each do |post| %>
+            <div class="col-4">
+              <%= link_to post_path(post.id) do %>
+                <%= image_tag post.get_image(250, 150) %>
+              <% end %>
+            </div>
+            <div class="col-8">
+            <div class="card-body">
+              <h5 class="card-title"><span class="yellow-bg">商品名:<%= post.name %></span>　★★★★</h5>
+              <p>ジャンル：<%= post.genre.name %></p>
+              <p>一言：<%= post.title %></p>
+              <p>♥：１　<%= link_to "コメント数:#{post.post_comments.count}", post_path(post.id) %></p>
+              <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
+              <%= link_to '詳しく見る', post_path(post.id), class: "btn btn-sm btn-primary" %>
+            </div>
+          <% end %>
+          <div>
+            <%= paginate @posts %>
+          </div>
+        </div>
+      </div>
+  </div>
 </div>

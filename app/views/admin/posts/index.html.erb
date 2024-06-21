@@ -19,7 +19,7 @@
             <div class="card-body">
               <h5 class="card-title yellow-bg">商品名: <%= post.name %> ★★★★★</h5>
               <p>一言：<%= post.title %></p>
-              <p>商品説明：<%= post.body %></p>
+              <p>商品レビュー：<%= post.body %></p>
               <p>♥：1　<%= "コメント数: #{post.post_comments.count}" %></p>
               <div class="text-right">
                 <%= link_to '削除', admin_post_path(post.id), method: :delete, data: { confirm: "本当に削除しますか?" }, class: "btn btn-sm btn-danger" %>

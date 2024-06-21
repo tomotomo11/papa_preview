@@ -23,7 +23,7 @@
             <td><%= f.text_field :title, placeholder: 'ここに見出しの一言をお願いします', class: "ml-4 mb-3 w-100" %></td>
           </tr>
           <tr>
-            <td><%= f.label :body, "商品説明（レビュー）" %></td>
+            <td><%= f.label :body, "商品レビュー", style: "height: 140px" %></td>
             <td><%= f.text_area :body, placeholder: 'ここにレビュー文をお願いします', class: "ml-4 mb-3 w-100", style: "height: 140px" %></td>
           </tr>
           <tr>
@@ -32,7 +32,10 @@
           </tr>
           <tr>
             <td><%= f.label :price, "購入価格（税込）" %></td>
-            <td><%= f.text_field :price, placeholder: "1000", class: "ml-4 mb-3 w-100" %> 円</td>
+            <td class="d-flex align-items-center">
+              <%= f.text_field :price, placeholder: "1000", class: "ml-4 mb-3 w-100" %>
+              <span class="ml-2">円</span>
+            </td>
           </tr>
         </table>
         <div class="mx-auto col-2">
