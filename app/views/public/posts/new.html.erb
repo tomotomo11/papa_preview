@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td><%= f.label :genre, "ジャンル" %></td>
-            <td><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: '-- 選択してください --', class: "ml-4 mb-3 w-100" %></td>
+            <td><%= f.collection_select :genre_id, Genre.all, :id, :name, {include_blank: '-- 選択してください --'}, class: "ml-4 mb-3 w-100" %></td>
           </tr>
           <tr>
             <td><%= f.label :price, "購入価格（税込）" %></td>
@@ -42,7 +42,7 @@
               <tr class="form-group" id="star">
                 <td><%= f.label :star %></td>
                 <td><%= f.hidden_field :star, id: :review_star, class: 'form-control' %></td>
-                <div id="post_raty"></div>
+                <td id="post_raty"></td>
               </tr>
               <script>
                 $(document).on('turbolinks:load', function() {

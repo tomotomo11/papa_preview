@@ -43,6 +43,7 @@ Post.find_or_create_by!(name: "歯固め") do |post|
   post.title = "歯固めです。"
   post.body = "お気に入りの歯固めです。"
   post.genre_id = "1"
+  post.star = "3"
   post.user = kotarou
 end
 
@@ -51,6 +52,7 @@ Post.find_or_create_by!(name: "音が鳴る積み木") do |post|
   post.title = "7つ積み上げれました。"
   post.body = "3種類の音が鳴ります。"
   post.genre_id = "1"
+  post.star = "3"
   post.user = nijirou
 end
 
@@ -59,5 +61,6 @@ Post.find_or_create_by!(name: "バウンサー") do |post|
   post.title = "すぐ寝ちゃいます。"
   post.body = "バウンサーでゆられているとすぐに寝ちゃいます。"
   post.genre_id = "2"
+  post.star = "3"
   post.user = gorou
 end
