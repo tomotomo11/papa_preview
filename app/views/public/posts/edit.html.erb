@@ -27,7 +27,7 @@
           </tr>
           <tr>
             <td><%= f.label :genre, "ジャンル" %></td>
-            <td><%= f.collection_select :genre_id, Genre.all, :id, :name, placeholder: "#{@post.genre.name}", class: "ml-4 mb-3 w-50" %></td>
+            <td><%= f.collection_select :genre_id, Genre.all, :id, :name, {placeholder: "#{@post.genre.name}"}, class: "ml-4 mb-3 w-50" %></td>
           </tr>
           <tr>
             <td><%= f.label :price, "購入価格（税込）" %></td>
@@ -38,13 +38,17 @@
           </tr>
           <tr>
             <td><%= f.label "star" %></td>
-            <td>★★★★★</td>
+            <td>
+              <div class="ml-4 mb-3">
+                <%= render "static_rate", post: @post, class: "ml-4 mb-3" %>
+              </div>
+            </td>
           </tr>
         </table>
         <div class="mx-auto col-3 d-flex flex-row">
-          <%= f.submit "変更を保存", class:"btn btn-success col py-2 my-2 mr-3" %>
+          <%= f.submit "変更を保存", class:"btn btn-sm btn-success col py-2 my-2 mr-3" %>
           <% if @post.user == current_user %>
-            <%= link_to "削除する", post_path(@post.id), method: :delete, class:"btn btn-danger col py-2 my-2" %>
+            <%= link_to "削除する", post_path(@post.id), method: :delete, class:"btn btn-sm btn-danger col-5 py-2 my-2" %>
           <% end %>
         </div>
       <% end %>
