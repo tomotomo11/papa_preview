@@ -28,10 +28,10 @@ Rails.application.routes.draw do
     patch '/users/withdraw' => 'users#withdraw', as: 'withdraw_user'
     get '/search' => 'searches#search'
     resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
+      resource :favorites, only: [:index, :create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
     resources :users, only: [:index, :show]
-    resource :favotires, only: [:index]
   end
 
   #ゲストユーザー用
