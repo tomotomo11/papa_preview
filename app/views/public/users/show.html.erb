@@ -17,7 +17,7 @@
           </div>
           <div class="col-12 col-md-8"> <!-- Change col-8 to col-12 col-md-8 for responsiveness -->
             <div class="card-body">
-              <h5 class="card-title"><span class="yellow-bg">商品名:<%= post.name %></span>　★★★★</h5>
+              <h5 class="card-title"><span class="yellow-bg">商品名:<%= post.name %></span>　★★★★★</h5>
               <p>ジャンル：<%= post.genre.name %></p>
               <p>一言：<%= post.title %></p>
               <p>♥：１　<%= link_to "コメント数:#{post.post_comments.count}", post_path(post.id) %></p>
