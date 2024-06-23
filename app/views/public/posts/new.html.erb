@@ -41,8 +41,10 @@
             <% if @post.id.nil? %>
               <tr class="form-group" id="star">
                 <td><%= f.label :star %></td>
-                <td><%= f.hidden_field :star, id: :review_star, class: 'form-control' %></td>
-                <td id="post_raty"></td>
+                <td class="d-flex align-items-center ml-4 mb-3">
+                  <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
+                  <div id="post_raty"></div>
+                </td>
               </tr>
               <script>
                 $(document).on('turbolinks:load', function() {
