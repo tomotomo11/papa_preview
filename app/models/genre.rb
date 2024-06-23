@@ -1,7 +1,9 @@
 class Genre < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_one_attached :image
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
+
+  scope :only_active, -> { where(is_active: true) }
 
   def get_image(width, height)
     unless image.attached?

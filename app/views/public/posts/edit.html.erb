@@ -27,7 +27,7 @@
           </tr>
           <tr>
             <td><%= f.label :genre, "ジャンル" %></td>
-            <td><%= f.collection_select :genre_id, Genre.all, :id, :name, {placeholder: "#{@post.genre.name}"}, class: "ml-4 mb-3 w-50" %></td>
+            <td><%= f.collection_select :genre_id, Genre.only_active, :id, :name, {placeholder: "#{@post.genre.name}"}, class: "ml-4 mb-3 w-50" %></td>
           </tr>
           <tr>
             <td><%= f.label :price, "購入価格（税込）" %></td>
