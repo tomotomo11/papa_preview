@@ -20,7 +20,25 @@
               <h5 class="card-title"><span class="yellow-bg">商品名:<%= post.name %></span>　★★★★★</h5>
               <p>ジャンル：<%= post.genre.name %></p>
               <p>一言：<%= post.title %></p>
-              <p>♥：１　<%= link_to "コメント数:#{post.post_comments.count}", post_path(post.id) %></p>
+
+              <div class="d-flex align-items-center mt-1">
+                <p>
+                  <% if @post.favorited_by?(current_user) %>
+                    <p>
+                      <%= link_to post_favorite_path(@post), method: :delete do %>
+                        ♥：<%= @post.favorites.count %>
+                      <% end %>
+                    </p>
+                    <% else %>
+                    <p>
+                      <%= link_to post_favorite_path(@post), method: :post do %>
+                        ♥：<%= @post.favorites.count %>
+                      <% end %>
+                    </p>
+                  <% end %>
+                </p>
+                <p class="ml-3"><%= link_to "コメント数:#{post.post_comments.count}", post_path(post.id) %></p>
+                </div>
               <div class="text-right">
                 <%= link_to '詳しく見る', post_path(post.id), class: "btn btn-sm btn-primary px-4 mr-3" %>
               </div>

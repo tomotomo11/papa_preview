@@ -10,14 +10,12 @@
         <thead>
           <th>ユーザー名</th>
           <th>投稿数</th>
-          <th>いいね</th>
         </thead>
         <% @users.each do |user| %>
         <tbody>
           <tr>
             <td><%= link_to "#{user.last_name + user.first_name}", user_path(user.id) %></td>
             <td><%= user.posts.count %></td>
-            <td></td>
           </tr>
         </tbody>
         <% end %>

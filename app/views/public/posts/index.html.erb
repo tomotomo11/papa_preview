@@ -37,7 +37,27 @@
                 <div>
                   <%= render "static_rate", post: post %>
                 </div>
-                <p class="mt-1">♥: １ <%= link_to "コメント数:#{post.post_comments.count}", post_path(post.id) %></p>
+
+              <div class="d-flex align-items-center mt-1">
+                <p>
+                  <% if post.favorited_by?(current_user) %>
+                    <p>
+                      <%= link_to post_favorite_path(post), method: :delete do %>
+                        ♥：<%= post.favorites.count %>
+                      <% end %>
+                    </p>
+                    <% else %>
+                    <p>
+                      <%= link_to post_favorite_path(post), method: :post do %>
+                        ♥：<%= post.favorites.count %>
+                      <% end %>
+                    </p>
+                  <% end %>
+                </p>
+                <p class="ml-3">コメント件数：<%= link_to "#{post.post_comments.count}", post_path(post.id) %></p>
+                </div>
+
+
                 <p>一言: <%= post.title %></p>
                 <p>ジャンル: <%= post.genre.name %></p>
                 <p>投稿者: <%= post.user.full_name %></p>

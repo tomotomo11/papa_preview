@@ -20,6 +20,14 @@ class Post < ApplicationRecord
     end
   end
 
+  def favorited_by?(user)
+    if user.present?
+      favorites.exists?(user_id: user.id)
+    else
+      false
+    end
+  end
+
 
   def get_image(width, height)
     unless image.attached?
