@@ -2,6 +2,7 @@ class Public::SearchesController < ApplicationController
   before_action :authenticate_user!
 
   def search
+    #キーワード検索
     @range = params[:range]
     @keyword = params[:keyword]
     @post_comments = PostComment.all
@@ -13,5 +14,18 @@ class Public::SearchesController < ApplicationController
     end
 
     render'public/searches/index'
+
+    #タグ検索
+    @tag_ids = params[:tag_ids]&.select(&:present?)
+    if @tag_ids.present?
+      @tag_word = "タグ: "
+      @tag_ids.each do |id|
+        @tag_word = @tag_word + ' ' + Tag.find(id).name if id != ""
+      end
+      @posts = @posts.joins(:post_tags).where(post_tags: {tag_id: @tag_ids}).group("posts.id").having("count(*) = #{@tag_ids.length}")
+    end
+
+    # 検索結果件数
+    @posts_count = @posts
   end
 end
