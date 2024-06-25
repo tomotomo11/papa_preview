@@ -12,9 +12,11 @@
             <tbody>
               <% @genres.each do |genre| %>
                 <tr>
-                  <td>
-                    <%= link_to genre.name, posts_path(genre_id: genre.id) %>
-                  </td>
+                  <% if genre.is_active == true %>
+                    <td>
+                      <%= link_to genre.name, posts_path(genre_id: genre.id) %>
+                    </td>
+                  <% end %>
                 </tr>
               <% end %>
             </tbody>
@@ -28,13 +30,13 @@
       <% if user_signed_in? %>
         <div class="col-md-5 my-3 p-3 border shadow-sm">
           <div class="tag-search">
-            <%= form_with url: search_path, local: true, method: :get do |f| %>
+            <%= form_with url: posts_path, local: true, method: :get do |f| %>
               <div class="d-flex flex-row flex-wrap">
-                <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
-      	    <div class="mx-1">
-      	      <%= b.check_box %>
-      	      <%= b.label %>
-      	    </div>
+                <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name, { include_hidden: false } do |b| %>
+            	    <div class="mx-1">
+            	      <%= b.check_box %>
+            	      <%= b.label %>
+            	    </div>
                 <% end %>
                 <%= button_tag type: "submit", class: "border rounded-pill shadow-sm search-btn" do %>
       	    <i class="fas fa-search"></i>
@@ -46,7 +48,7 @@
       <% end %>
 
       <div class="row d-flex flex-wrap">
-        <% @post.each do |post| %>
+        <% @posts.each do |post| %>
           <div class="col-md-4 mb-3 pt-1 px-1">
             <div class="card">
               <%= link_to post_path(post.id) do %>
@@ -87,6 +89,6 @@
     </div>
   </div>
   <div class="d-flex justify-content-center">
-    <%= paginate @post %>
+    <%= paginate @posts %>
   </div>
 </div>
