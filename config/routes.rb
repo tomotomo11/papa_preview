@@ -32,7 +32,11 @@ Rails.application.routes.draw do
       resource :favorite, only: [:index, :create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
-    resources :users, only: [:index, :show]
+    resources :users, only: [:index, :show] do
+      member do
+        get :favorites #いいねしたユーザーを判別するためネスト。判別にidが必要なのでmember
+      end
+    end
   end
 
   #ゲストユーザー用
