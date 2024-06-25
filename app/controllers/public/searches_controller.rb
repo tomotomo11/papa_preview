@@ -22,10 +22,8 @@ class Public::SearchesController < ApplicationController
       @tag_ids.each do |id|
         @tag_word = @tag_word + ' ' + Tag.find(id).name if id != ""
       end
-      @posts = @posts.joins(:post_tags).where(post_tags: {tag_id: @tag_ids}).group("posts.id").having("count(*) = #{@tag_ids.length}")
+      @posts = @posts.joins(:tag_relationships).where(tag_relationships: {tag_id: @tag_ids}).group("posts.id").having("count(*) = #{@tag_ids.length}")
     end
 
-    # 検索結果件数
-    @posts_count = @posts
   end
 end
