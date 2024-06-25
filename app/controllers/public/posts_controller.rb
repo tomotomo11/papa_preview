@@ -12,6 +12,7 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @tags = Tag.all
   end
 
   def create
@@ -64,7 +65,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :name, :title, :body, :genre_id, :price, :star, :tag)
+    params.require(:post).permit(:image, :name, :title, :body, :genre_id, :price, :star, :tag, tag_ids: [])
   end
 
 end

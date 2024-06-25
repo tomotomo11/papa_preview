@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
     resources :users, only: [:index, :edit, :show, :update]
     resources :posts, only: [:index, :destroy]
+    resources :tags, only: [:index, :create, :destroy]
   end
 
 
