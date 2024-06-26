@@ -10,7 +10,6 @@ class Public::UsersController < ApplicationController
     @users = User.all
     @posts = @user.posts.page(params[:page]).per(8)
     @genre = Genre.all
-    @post = Post.find(params[:id])
   end
 
   def mypage
