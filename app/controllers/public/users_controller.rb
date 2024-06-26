@@ -42,6 +42,11 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def favorites
+    @user = User.find(params[:id])
+    @favorite_posts = @user.favorite_posts
+  end
+
   private
 
   def user_params

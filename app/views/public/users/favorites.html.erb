@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-11 mx-auto">
+      <table class="table">
+        <thead>
+          <th>商品画像</th>
+          <th>商品名</th>
+          <th>投稿者</th>
+          <th>一言</th>
+          <th>いいね</th>
+          <th>評価</th>
+        </thead>
+        <tbody>
+          <% @favorite_posts.each do |post| %>
+          <tr>
+            <td>
+              <%= link_to post_path(post.id) do %>
+                <%= image_tag post.get_image(250, 150), class: 'img-fluid' %> <!-- Add img-fluid class for responsive image -->
+              <% end %>
+            </td>
+            <td><%= post.name %></td>
+            <td><%= post.user.full_name %></td>
+            <td><%= post.title %></td>
+            <td>
+              <% if post.favorited_by?(current_user) %>
+              <p>
+                <%= link_to post_favorite_path(post), method: :delete do %>
+                    ♥：<%= post.favorites.count %>
+                  <% end %>
+                </p>
+                <% else %>
+                <p>
+                  <%= link_to post_favorite_path(post), method: :post do %>
+                    ♥：<%= post.favorites.count %>
+                  <% end %>
+                </p>
+              <% end %>
+            </td>
+            <td>
+              <%= render "public/posts/static_rate", post: post %>
+            </td>
+
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
