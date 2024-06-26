@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
     resources :users, only: [:index, :edit, :show, :update]
     resources :posts, only: [:index, :destroy]
+    resources :tags, only: [:index, :create, :destroy]
   end
 
 
@@ -31,7 +32,11 @@ Rails.application.routes.draw do
       resource :favorite, only: [:index, :create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
-    resources :users, only: [:index, :show]
+    resources :users, only: [:index, :show] do
+      member do
+        get :favorites #いいねしたユーザーを判別するためネスト。判別にidが必要なのでmember
+      end
+    end
   end
 
   #ゲストユーザー用

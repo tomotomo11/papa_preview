@@ -40,7 +40,7 @@
           <tr>
             <% if @post.id.nil? %>
               <tr class="form-group" id="star">
-                <td><%= f.label :star %></td>
+                <td><%= f.label :star, "評価" %></td>
                 <td class="d-flex align-items-center ml-4 mb-3">
                   <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
                   <div id="post_raty"></div>
@@ -68,6 +68,17 @@
             <% end %>
           </tr>
         </table>
+        <div class="form-group row">
+          <%= f.label :tag_ids, 'タグ', class: 'col-md-4 text-center' %>
+          <div class="col-md-8 border d-flex flex-row flex-wrap">
+            <%= f.collection_check_boxes :tag_ids, @tags, :id, :name do |b| %>
+              <div class="mx-2 mt-1">
+                <%= b.check_box %>
+                <%= b.label %>
+              </div>
+            <% end %>
+          </div>
+        </div>
         <div class="mx-auto col-2">
           <%= f.submit '新規投稿', class: "btn btn-success col py-2 my-2", style: "font-weight: bold; font-size: 18px;" %>
         </div>

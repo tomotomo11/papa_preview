@@ -38,7 +38,7 @@
                   <%= link_to "みんなの投稿", posts_path, class: 'nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "いいねした投稿", "#", class: 'nav-link text-dark' %>
+                  <%= link_to "いいねした投稿", favorites_user_path(current_user), class: 'nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
                   <%= link_to "ユーザー一覧", users_path, class: 'nav-link text-dark' %>
@@ -57,6 +57,9 @@
                 </li>
                 <li class="nav-item">
                   <%= link_to "レビュー一覧", admin_posts_path, class: 'nav-link text-dark border rounded mx-2' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "タグ一覧", admin_tags_path, class: 'nav-link text-dark border rounded mx-2' %>
                 </li>
                 <li class="nav-item">
                   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark border rounded ml-2' %>
