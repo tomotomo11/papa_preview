@@ -28,7 +28,7 @@
     <div class="col-md-10">
       <h1 class="mb-4 mt-3">みんなの投稿</h1>
       <% if user_signed_in? %>
-        <div class="col-md-5 my-3 p-3 border shadow-sm">
+        <div class="col my-3 p-3 border shadow-sm">
           <div class="tag-search">
             <%= form_with url: posts_path, local: true, method: :get do |f| %>
               <div class="d-flex flex-row flex-wrap">
