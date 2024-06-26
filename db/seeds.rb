@@ -104,4 +104,4 @@ TagRelationship.create(
 
 TagRelationship.create(
   tag_id:2,
-  post_id:1)
+  post_id:3)
