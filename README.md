@@ -48,7 +48,7 @@
 - タグの一覧、追加、削除
 
 ## 設計書
-https://www.figma.com/design/48ActQj4uBZE7dFgehPHGU/%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA?node-id=0-1&t=x2RjptCozGrAnJDp-0
+URLは[こちら](https://www.figma.com/design/48ActQj4uBZE7dFgehPHGU/%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA?node-id=0-1&t=x2RjptCozGrAnJDp-0)
 
 ### 画面遷移図
 
