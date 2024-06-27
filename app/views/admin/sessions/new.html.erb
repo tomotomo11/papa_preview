@@ -4,8 +4,8 @@
       <h3 class="col-3 my-5 bg-light">管理者ログイン</h3>
 
       <div class="col-sm-12 col-md-10 col-lg-8 px-sm-0 mx-auto">
+        <%= form_with model: @admin, url: admin_session_path do |f| %>
         <table class="table table-borderless">
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <tr>
             <td><%= f.label :email, "メールアドレス" %></td>
             <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
