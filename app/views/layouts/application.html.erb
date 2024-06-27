@@ -64,6 +64,7 @@
                 <li class="nav-item">
                   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark border rounded ml-2' %>
                 </li>
+                <!-- ログアウトした時の表示 -->
               <% else %>
                 <li class="nav-item">
                   <%= link_to "About", about_path, class: 'nav-link text-dark' %>
@@ -77,11 +78,11 @@
                 <li class="nav-item">
                   <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
                 </li>
-                <li>
+                <li class="nav-item">
                   <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "nav-link text-dark" %>
                 </li>
-                <li>
-                  <%= link_to '管理者ログイン', admin_session_path, method: :post, class: "nav-link text-dark" %>
+                <li class="nav-item">
+                  <%= link_to '管理者ログイン', new_admin_session_path, class: "nav-link text-dark" %>
                 </li>
               <% end %>
             </ul>

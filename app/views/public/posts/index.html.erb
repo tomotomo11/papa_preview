@@ -34,7 +34,9 @@
             <%= form_with url: posts_path, local: true, method: :get do |f| %>
               <div class="d-flex flex-row flex-wrap">
                 <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name, { include_hidden: false } do |b| %>
-            	    <div class="mx-1 tag-checkbox">
+                <!--タグを分けて表示できたらこの記述に変更
+            	    <div class="mx-1 tag-checkbox">-->
+            	    <div class="mx-1">
             	      <%= b.check_box %>
             	      <%= b.label %>
             	    </div>
@@ -83,11 +85,16 @@
                 <p>投稿者: <%= post.user.full_name %></p>
                 <div class="row my-3">
                   <div>タグ：</div>
+                  <div class="col-md-9">
+                    <%= post.tags.pluck(:name).join(' / ') %>
+                  </div>
+                  <!--タグを分けて表示できたらこの記述に変更
+                  <div>タグ：</div>
                   <div class="col-md-10 col-sm-12">
                     <div class="col-lg-6 col-md-7 select-tag">
                       <%= post.tags.pluck(:name).join(' / ') %>
                     </div>
-                  </div>
+                  </div>-->
                 </div>
                 <div class="text-right"><%= link_to "詳細へ", post_path(post.id), class: "btn btn-sm btn-primary" %></div>
               </div>
