@@ -50,12 +50,12 @@
 ## 使用方法
 __インストール__
 
-$ git clone [https://github.com/tomotomo11/papa_preview/](https://github.com/tomotomo11/papa_preview/)
-$ cd papa_preview
-$ bundle install
-$ rails db:migrate
-$ rails db:seed
-$ rails s
+$ git clone [https://github.com/tomotomo11/papa_preview/](https://github.com/tomotomo11/papa_preview/)<br>
+$ cd papa_preview<br>
+$ bundle install<br>
+$ rails db:migrate<br>
+$ rails db:seed<br>
+$ rails s<br>
 
 __テスト__
 ターミナル（もしくはコマンドプロンプト）で上記の作業を実施後、ローカルサーバーでご確認ください。
