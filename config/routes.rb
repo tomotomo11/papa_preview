@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     patch '/users/withdraw' => 'users#withdraw', as: 'withdraw_user'
     get '/search' => 'searches#search'
     resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
-      resource :favorite, only: [:index, :create, :destroy]
+      resource :favorite, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
     resources :users, only: [:index, :show] do
