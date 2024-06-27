@@ -2,7 +2,7 @@
   <%= form_with url: search_path, method: :get, local: true do |f| %>
     <%= f.text_field :keyword, placeholder: 'キーワードから探す' %>
     <%= f.select :range, options_for_select([['投稿', "Post"],['ユーザー', "User"]]) %>
-    <%= f.button :submit, class: "btn btn-sm btn-primary" do %>
+    <%= f.button :submit, class: "btn btn-sm btn-warning rounded-pill" do %>
       <i class="fa-solid fa-magnifying-glass"></i>
     <% end %>
   <% end %>

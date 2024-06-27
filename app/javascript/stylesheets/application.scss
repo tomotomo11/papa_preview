@@ -68,3 +68,48 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 /* ------------------posts_show--------------------- */
+
+  .tag-checkbox {
+    cursor: pointer;
+    padding: 0 0.5em;
+    margin-bottom:  0.5em;
+    line-height: 1;
+    color: #fff;
+    background-color: #7cccc2;
+    border: 1px solid #7cccc2;
+    border-radius: 2em;
+  }
+
+  .select-tag {
+    cursor: pointer;
+    padding: 0 0.5em;
+    line-height: 1;
+    color: #fff;
+    background-color: #7cccc2;
+    border: 1px solid #7cccc2;
+    border-radius: 2em;
+  }
+
+@media (max-width: 768px) {
+  .text-overlay {
+    top: 70px;
+    left: -30px;
+  }
+
+  .text-overlay h3 {
+    font-size: 2.5rem;
+  }
+}
+
+/* Media query for smaller smartphones */
+@media (max-width: 576px) {
+  .text-overlay {
+    top: 50px;
+    left: -20px;
+  }
+
+  .text-overlay h3 {
+    font-size: 2rem;
+    text-align: center; /* Center align the text if needed */
+  }
+}
