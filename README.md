@@ -1,4 +1,5 @@
 # ぱぱぷれびゅー(papa present review)
+[![Image from Gyazo](https://i.gyazo.com/6d2c7d3186fc39da04b11296e36aea49.png)](https://gyazo.com/6d2c7d3186fc39da04b11296e36aea49)
 ​
 ## サイト概要
 ### サイトテーマ
