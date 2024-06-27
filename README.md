@@ -47,6 +47,31 @@
 - レビューの一覧、削除
 - タグの一覧、追加、削除
 
+## 使用方法
+__インストール__
+
+$ git clone [https://github.com/tomotomo11/papa_preview/](https://github.com/tomotomo11/papa_preview/)
+$ cd papa_preview
+$ bundle install
+$ rails db:migrate
+$ rails db:seed
+$ rails s
+
+__テスト__
+ターミナル（もしくはコマンドプロンプト）で上記の作業を実施後、ローカルサーバーでご確認ください。
+
+```
+【管理者用アカウント】
+URL：/admin/sign_in
+メールアドレス：admin@admin
+パスワード：testpass
+```
+```
+【顧客用アカウント】
+ゲストログインからご確認いただけます。
+（新規会員登録画面にて新規登録も可能です。）
+```
+
 ## 設計書
 ### 画面遷移図
 URLは[こちら](https://www.figma.com/design/48ActQj4uBZE7dFgehPHGU/%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA?node-id=0-1&t=x2RjptCozGrAnJDp-0)
