@@ -93,6 +93,3 @@ URLは[こちら](http://54.95.246.32/)
 ## 使用素材
 - フリー素材として以下を使用<br>
 ・フォトAC（https://www.photo-ac.com/）<br>
-・イラストAC（https://www.ac-illust.com/）<br>
-・いらすとや（https://www.irasutoya.com/）<br>
-・Pexels（https://www.pexels.com/ja-jp/）
