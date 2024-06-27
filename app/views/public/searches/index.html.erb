@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-9 mx-auto">
+    <div class="col-7 mx-auto">
       <table class="table table-hover table-inverse">
       <!--検索対象モデルがPostの時 -->
         <% if @range == "Post" %>
@@ -43,8 +43,10 @@
           </tr>
         <% end %>
         </tbody>
-        <!--検索対象モデルがUserの時 -->
-        <% elsif @range == "User"  %>
+
+        <% else %>
+        <!--検索対象モデルがPostではない時(= 検索対象モデルがUserの時) -->
+
         <h2>"<%= @keyword %>"の検索結果</h2>
         <thead>
           <tr>
@@ -62,27 +64,7 @@
             </tr>
           <% end %>
         </tbody>
-
-        <% else %>
-        <!--検索対象モデルがPostでもUserでもない時(= 検索対象モデルがTagの時) -->
-       <h2 class="title m-3"><i class="fas fa-search"></i> "<%= @tag_word %>"の検索結果</h2>
-       <thead>
-          <tr>
-            <th>商品画像</th>
-            <th>商品名</th>
-            <th>いいね</th>
-            <th>スター</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td>1</td>
-            <td>1</td>
-          </tr>
-        </tbody>
-       <% end %>
+        <% end %>
       </table>
     </div>
   </div>

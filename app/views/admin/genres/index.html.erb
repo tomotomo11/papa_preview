@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row py-4 pr-3">
-    <div class="col-4 offset-1 bg-light text-center">
-      <h3>ジャンル一覧・追加</h3>
+    <div class="col-12 text-center mb-3">
+      <h2>ジャンル追加</h2>
     </div>
   </div>
   <div class="row">
-    <div class="col py-4 ml-5">
+    <div class="col-12 text-center mb-3">
       <% if @genre.errors.any? %>
         <%= @genre.errors.count %>件のエラーが発生しました
         <ul>
@@ -27,8 +27,8 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-5 ml-5">
-      <h4>ジャンル</h4>
+    <div class="col-12 text-center my-3">
+      <h4>登録済みジャンル</h4>
       <table class="table">
           <th>ジャンル名</th>
           <th>状態</th>

@@ -26,20 +26,21 @@
     </div>
 
     <div class="col-md-10">
-      <h1 class="mb-4 mt-3">みんなの投稿</h1>
+      <h2 class="text-center mb-4 mt-3">みんなの投稿</h2>
       <% if user_signed_in? %>
         <div class="col my-3 p-3 border shadow-sm">
           <div class="tag-search">
+            <h4>タグ検索</h4>
             <%= form_with url: posts_path, local: true, method: :get do |f| %>
               <div class="d-flex flex-row flex-wrap">
                 <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name, { include_hidden: false } do |b| %>
-            	    <div class="mx-1">
+            	    <div class="mx-1 tag-checkbox">
             	      <%= b.check_box %>
             	      <%= b.label %>
             	    </div>
                 <% end %>
-                <%= button_tag type: "submit", class: "border rounded-pill shadow-sm search-btn" do %>
-      	    <i class="fas fa-search"></i>
+                <%= f.button :submit, class: "btn btn-sm btn-warning rounded-pill" do %>
+                  <i class="fa-solid fa-magnifying-glass"></i>
                 <% end %>
               </div>
             <% end %>
@@ -59,30 +60,34 @@
                 <div>
                   <%= render "static_rate", post: post %>
                 </div>
-              <div class="d-flex align-items-center mt-1">
-                <p>
+                <div class="d-flex align-items-center mt-1">
+                  <p>
                   <% if post.favorited_by?(current_user) %>
                     <p>
                       <%= link_to post_favorite_path(post), method: :delete do %>
                         ♥：<%= post.favorites.count %>
                       <% end %>
                     </p>
-                    <% else %>
+                  <% else %>
                     <p>
                       <%= link_to post_favorite_path(post), method: :post do %>
                         ♥：<%= post.favorites.count %>
                       <% end %>
                     </p>
                   <% end %>
-                </p>
-                <p class="ml-3">コメント件数：<%= link_to "#{post.post_comments.count}", post_path(post.id) %></p>
+                  </p>
+                  <p class="ml-3">コメント件数：<%= link_to "#{post.post_comments.count}", post_path(post.id) %></p>
                 </div>
-                <p>一言: <%= post.title %></p>
+                <p class="mt-2">一言: <%= post.title %></p>
                 <p>ジャンル: <%= post.genre.name %></p>
                 <p>投稿者: <%= post.user.full_name %></p>
                 <div class="row my-3">
                   <div>タグ：</div>
-                  <div class="col-md-9"><%= post.tags.pluck(:name).join(' / ') %></div>
+                  <div class="col-md-10 col-sm-12">
+                    <div class="col-lg-6 col-md-7 select-tag">
+                      <%= post.tags.pluck(:name).join(' / ') %>
+                    </div>
+                  </div>
                 </div>
                 <div class="text-right"><%= link_to "詳細へ", post_path(post.id), class: "btn btn-sm btn-primary" %></div>
               </div>
