@@ -30,7 +30,7 @@
                 <p class="ml-3"><%= "コメント数: #{post.post_comments.count}" %></p>
               </div>
               <div>
-                <div class="col-lg-4 col-md-6 col-sm-4 select-tag">
+                <div class="col-9">
                   <%= post.tags.pluck(:name).join(' / ') %>
                 </div>
               </div>
