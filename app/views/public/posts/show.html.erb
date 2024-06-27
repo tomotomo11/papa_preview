@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="col-md-10">
-      <h3 class="mb-4 mt-3">投稿詳細</h3>
+      <h2 class="text-center mb-4 mt-3">投稿詳細</h2>
         <div class="card">
           <div class="row no-gutters">
             <div class="col-4">
@@ -61,7 +61,9 @@
                 </div>
                 <div class="row my-3">
                   <div>タグ：</div>
-                  <div class="col-md-9"><%= @post.tags.pluck(:name).join(' / ') %></div>
+                  <div class="col-lg-2 col-md-3 col-sm-4 select-tag">
+                    <%= @post.tags.pluck(:name).join(' / ') %>
+                  </div>
                 </div>
                 <div class="d-flex justify-content-end">
                   <%= link_to "みんなの投稿へ戻る", posts_path, class:"btn btn-primary mr-3 px-4" %>
@@ -76,7 +78,7 @@
         </div>
         <div class="row">
           <div class="col">
-            <h4 class="mt-4 mb-3">コメントする</h4>
+            <h4 class="text-center mt-4 mb-3">コメントする</h4>
             <%= form_with model: [@post, @post_comment] do |f| %>
               <p><%=f.text_area :body, rows: '4', placeholder: "ここにコメントしてください", style: "width: 100%;" %></p>
               <p class="d-flex justify-content-end"><%= f.submit "送信", class:"btn btn-success px-4" %></p>
@@ -85,7 +87,7 @@
         </div>
         <div class="row">
           <div class="col">
-            <h4 class="mb-3">コメント一覧</h4>
+            <h4 class="text-center mb-3">コメント一覧</h4>
               <% @post.post_comments.each do |post_comment| %>
               <div class="d-flex flex-row">
                 <div class="col-3 pr-4">
