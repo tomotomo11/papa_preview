@@ -11,6 +11,7 @@ class Post < ApplicationRecord
     validates :name
     validates :title
     validates :body
+    validates :star
   end
 
   def self.search(keyword)
