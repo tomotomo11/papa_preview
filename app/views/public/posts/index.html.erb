@@ -12,9 +12,11 @@
             <tbody>
               <% @genres.each do |genre| %>
                 <tr>
-                  <td>
-                    <%= link_to genre.name, posts_path(genre_id: genre.id) %>
-                  </td>
+                  <% if genre.is_active == true %>
+                    <td>
+                      <%= link_to genre.name, posts_path(genre_id: genre.id) %>
+                    </td>
+                  <% end %>
                 </tr>
               <% end %>
             </tbody>
@@ -24,9 +26,32 @@
     </div>
 
     <div class="col-md-10">
-      <h1 class="mb-4 mt-3">みんなの投稿</h1>
+      <h2 class="text-center mb-4 mt-3">みんなの投稿</h2>
+      <% if user_signed_in? %>
+        <div class="col my-3 p-3 border shadow-sm">
+          <div class="tag-search">
+            <h4>タグ検索</h4>
+            <%= form_with url: posts_path, local: true, method: :get do |f| %>
+              <div class="d-flex flex-row flex-wrap">
+                <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name, { include_hidden: false } do |b| %>
+                <!--タグを分けて表示できたらこの記述に変更
+            	    <div class="mx-1 tag-checkbox">-->
+            	    <div class="mx-1">
+            	      <%= b.check_box %>
+            	      <%= b.label %>
+            	    </div>
+                <% end %>
+                <%= f.button :submit, class: "btn btn-sm btn-warning rounded-pill" do %>
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
       <div class="row d-flex flex-wrap">
-        <% @post.each do |post| %>
+        <% @posts.each do |post| %>
           <div class="col-md-4 mb-3 pt-1 px-1">
             <div class="card">
               <%= link_to post_path(post.id) do %>
@@ -34,10 +59,44 @@
               <% end %>
               <div class="card-body">
                 <h5 class="card-title"><span class="yellow-bg">商品名: <%= post.name %></span></h5>
-                <p>星星星　♥: １ <%= link_to "コメント数:#{post.post_comments.count}", post_path(post.id) %></p>
-                <p>一言: <%= post.title %></p>
+                <div>
+                  <%= render "static_rate", post: post %>
+                </div>
+                <div class="d-flex align-items-center mt-1">
+                  <p>
+                  <% if post.favorited_by?(current_user) %>
+                    <p>
+                      <%= link_to post_favorite_path(post), method: :delete do %>
+                        ♥：<%= post.favorites.count %>
+                      <% end %>
+                    </p>
+                  <% else %>
+                    <p>
+                      <%= link_to post_favorite_path(post), method: :post do %>
+                        ♥：<%= post.favorites.count %>
+                      <% end %>
+                    </p>
+                  <% end %>
+                  </p>
+                  <p class="ml-3">コメント件数：<%= link_to "#{post.post_comments.count}", post_path(post.id) %></p>
+                </div>
+                <p class="mt-2">一言: <%= post.title %></p>
                 <p>ジャンル: <%= post.genre.name %></p>
-                <p>投稿者: <%= post.user.full_name %>　<%= link_to "詳細へ", post_path(post.id), class: "btn btn-sm btn-primary" %></p>
+                <p>投稿者: <%= post.user.full_name %></p>
+                <div class="row my-3">
+                  <div>タグ：</div>
+                  <div class="col-md-9">
+                    <%= post.tags.pluck(:name).join(' / ') %>
+                  </div>
+                  <!--タグを分けて表示できたらこの記述に変更
+                  <div>タグ：</div>
+                  <div class="col-md-10 col-sm-12">
+                    <div class="col-lg-6 col-md-7 select-tag">
+                      <%= post.tags.pluck(:name).join(' / ') %>
+                    </div>
+                  </div>-->
+                </div>
+                <div class="text-right"><%= link_to "詳細へ", post_path(post.id), class: "btn btn-sm btn-primary" %></div>
               </div>
             </div>
           </div>
@@ -46,6 +105,6 @@
     </div>
   </div>
   <div class="d-flex justify-content-center">
-    <%= paginate @post %>
+    <%= paginate @posts %>
   </div>
 </div>

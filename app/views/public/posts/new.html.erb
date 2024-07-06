@@ -1,45 +1,101 @@
 <div class="container">
   <div class="row py-4">
-    <div class="col-3 offset-1 bg-light text-center">
-      <h3>新規投稿作成</h3>
+    <div class="col-md-12">
+      <h2 class="text-center mb-4 mt-3">新規投稿作成</h2>
     </div>
   </div>
   <%= render '/layouts/error_messages', post: @post %>
   <div class="row">
     <div class="col">
       <%= form_with model: @post, method: :post do |f| %>
-      <div class="row-auto justify-content-center mt-4">
-        <table class="mx-auto col-9">
-          <tr>
-            <td><%= f.label :image, "商品画像" %></td>
-            <td><%= f.file_field :image, accept: "image/*", class: "ml-4 mb-3 w-100" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :name, "商品名" %></td>
-            <td><%= f.text_field :name, placeholder: '商品名', class: "ml-4 mb-3 w-100" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :title, "一言" %></td>
-            <td><%= f.text_field :title, placeholder: 'ここに見出しの一言をお願いします', class: "ml-4 mb-3 w-100" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :body, "商品レビュー", style: "height: 140px" %></td>
-            <td><%= f.text_area :body, placeholder: 'ここにレビュー文をお願いします', class: "ml-4 mb-3 w-100", style: "height: 140px" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :genre, "ジャンル" %></td>
-            <td><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: '-- 選択してください --', class: "ml-4 mb-3 w-100" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :price, "購入価格（税込）" %></td>
-            <td class="d-flex align-items-center">
-              <%= f.text_field :price, placeholder: "1000", class: "ml-4 mb-3 w-100" %>
-              <span class="ml-2">円</span>
-            </td>
-          </tr>
-        </table>
-        <div class="mx-auto col-2">
-          <%= f.submit '新規投稿', class: "btn btn-success col py-2 my-2", style: "font-weight: bold; font-size: 18px;" %>
+      <div class="row justify-content-center mt-4">
+        <div class="col-9">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"><%= f.label :image, "商品画像" %></label>
+            <div class="col-sm-9">
+              <%= f.file_field :image, accept: "image/*" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"><%= f.label :name, "商品名" %></label>
+            <div class="col-sm-9">
+              <%= f.text_field :name, placeholder: '商品名', class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"><%= f.label :title, "一言" %></label>
+            <div class="col-sm-9">
+              <%= f.text_field :title, placeholder: 'ここに見出しの一言をお願いします', class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"><%= f.label :body, "商品レビュー" %></label>
+            <div class="col-sm-9">
+              <%= f.text_area :body, placeholder: 'ここにレビュー文をお願いします', class: "form-control", style: "height: 140px" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"><%= f.label :genre, "ジャンル" %></label>
+            <div class="col-sm-9">
+              <%= f.collection_select :genre_id, Genre.only_active, :id, :name, {include_blank: '-- 選択してください --'}, class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"><%= f.label :price, "購入価格（税込）" %></label>
+            <div class="col-sm-9">
+              <div class="input-group">
+                <%= f.text_field :price, placeholder: "1000", class: "form-control" %>
+                <div class="input-group-append">
+                  <span class="input-group-text" style="background-color: #F4EFEC; border: none;">円</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% if @post.id.nil? %>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label"><%= f.label :star, "評価" %></label>
+              <div class="col-sm-9">
+                <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
+                <div id="post_raty"></div>
+              </div>
+            </div>
+            <script>
+              $(document).on('turbolinks:load', function() {
+                let elem = document.querySelector('#post_raty');
+                if (elem == null) return;
+
+                elem.innerHTML = ""
+                let opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  scoreName: 'post[star]',
+                };
+                raty(elem, opt);
+              });
+            </script>
+          <% else %>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label"><%= f.label :star, "評価" %></label>
+              <div class="col-sm-9">
+                <%= render "static_rate", post: post %>
+              </div>
+            </div>
+          <% end %>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"><%= f.label :tag_ids, 'タグ' %></label>
+            <div class="col-sm-9 border d-flex flex-row flex-wrap">
+              <%= f.collection_check_boxes :tag_ids, @tags, :id, :name do |b| %>
+                <div class="mx-2 mt-1">
+                  <%= b.check_box %>
+                  <%= b.label %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="text-center">
+            <%= f.submit '新規投稿', class: "btn btn-success py-2 my-2", style: "font-weight: bold; font-size: 18px;" %>
+          </div>
         </div>
       </div>
       <% end %>

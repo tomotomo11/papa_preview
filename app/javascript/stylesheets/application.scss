@@ -1,5 +1,12 @@
 @use '~bootstrap/scss/bootstrap';
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+h1, h2, h3, h4, h5, h6, p {
+    font-family: '秀英にじみ丸ゴシック B', 'A P-OTF 秀英にじみ丸ゴ Std', sans-serif;
+}
+
+
 .flash-message {
   border-radius: 5px;
   padding: 16px 24px;
@@ -24,7 +31,7 @@
 
 .yellow-bg {
   background-color: #fff9c4;
-  border-radius: 5px; /* 角を少し丸める */
+  border-radius: 5px;
 }
 
 .card-body .card-title,
@@ -33,6 +40,11 @@
 }
 
 /* ------------------main--------------------- */
+.main_image {
+  border-radius: 20rem;
+}
+
+
 .text-overlay {
   position: absolute;
   top: 100px;
@@ -41,7 +53,6 @@
 }
 
 .text-overlay h3 {
-  font-family: '秀英にじみ丸ゴシック B', 'A P-OTF 秀英にじみ丸ゴ Std', sans-serif;
   font-size: 3.4rem;
 }
 
@@ -61,3 +72,48 @@
 }
 
 /* ------------------posts_show--------------------- */
+
+  .tag-checkbox {
+    cursor: pointer;
+    padding: 0 0.5em;
+    margin-bottom:  0.5em;
+    line-height: 1;
+    color: #fff;
+    background-color: #7cccc2;
+    border: 1px solid #7cccc2;
+    border-radius: 2em;
+  }
+
+  .select-tag {
+    cursor: pointer;
+    padding: 0 0.5em;
+    line-height: 1;
+    color: #fff;
+    background-color: #7cccc2;
+    border: 1px solid #7cccc2;
+    border-radius: 2em;
+  }
+
+@media (max-width: 768px) {
+  .text-overlay {
+    top: 70px;
+    left: -30px;
+  }
+
+  .text-overlay h3 {
+    font-size: 2.5rem;
+  }
+}
+
+/* Media query for smaller smartphones */
+@media (max-width: 576px) {
+  .text-overlay {
+    top: 50px;
+    left: -20px;
+  }
+
+  .text-overlay h3 {
+    font-size: 2rem;
+    text-align: center; /* Center align the text if needed */
+  }
+}

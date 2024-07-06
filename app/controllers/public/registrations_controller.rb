@@ -39,7 +39,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # end
 
   def after_sign_up_path_for(resource)
-    about_path
+    mypage_path
   end
 
   protected

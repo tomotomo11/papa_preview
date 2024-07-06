@@ -2,6 +2,7 @@ class Public::SearchesController < ApplicationController
   before_action :authenticate_user!
 
   def search
+    #キーワード検索
     @range = params[:range]
     @keyword = params[:keyword]
     @post_comments = PostComment.all

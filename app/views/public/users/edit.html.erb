@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row py-4">
-    <div class="col-3 offset-1 text-center">
-      <h3>プロフィール編集</h3>
+    <div class="col-md-12">
+      <h2 class="text-center mb-4 mt-3">プロフィール編集</h2>
     </div>
   </div>
 
@@ -33,7 +33,7 @@
           <td></td>
         </tr>
       </table>
-      <div class="mx-auto col-3 d-flex flex-row">
+      <div class="mx-auto col-5 d-flex flex-row">
         <%= f.submit "変更内容を保存する", class:"btn btn-success col py-2 my-2 mr-3" %>
         <%= link_to "退会する", confirm_unsubscribe_path, class:"btn btn-danger col-5 py-2 my-2" %>
       </div>
