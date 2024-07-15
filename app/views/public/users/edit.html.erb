@@ -5,14 +5,8 @@
     </div>
   </div>
 
-  <% if @user.errors.any? %>
-    <%= @user.errors.count %>件のエラーが発生しました
-    <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
+  <%= render '/layouts/error_messages', post: @user %>
+
   <div class="row">
     <div class="col">
     <%= form_with model: @user, url: users_information_path, method: :patch do |f| %>
