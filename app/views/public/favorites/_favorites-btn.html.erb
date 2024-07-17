@@ -1,0 +1,15 @@
+<% if post.favorited_by?(current_user) %>
+  <p>
+    <%= link_to post_favorite_path(post), method: :delete do %>
+      <i class="fa-solid fa-heart" style="color: #e54747;"></i>
+      <%= post.favorites.count %>
+    <% end %>
+  </p>
+  <% else %>
+  <p>
+    <%= link_to post_favorite_path(post), method: :post do %>
+      <i class="fa-solid fa-heart" style="color: #007bff;"></i>
+      <%= post.favorites.count %>
+    <% end %>
+  </p>
+<% end %>
