@@ -27,6 +27,7 @@ class Public::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to mypage_path, notice: '会員情報の更新が完了しました。'
     else
+      flash.now[:alert] = "会員情報を更新できませんでした。"
       render :edit
     end
   end

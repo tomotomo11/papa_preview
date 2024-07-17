@@ -1,27 +1,5 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-2">
-      <div class="container mt-5">
-        <div class="row">
-          <table class="table table-bordered mt-5">
-            <thead>
-              <th style="background-color: #e9ecef; border-color: #dee2e6;">商品カテゴリ</th>
-            </thead>
-            <tbody>
-              <% @genre.each do |genre| %>
-              <tr>
-                <% if genre.is_active == true %>
-                  <td>
-                    <%= link_to genre.name, posts_path(genre_id: genre.id) %>
-                  </td>
-                <% end %>
-              </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
     <div class="col-md-10">
       <h2 class="text-center mb-4 mt-3">投稿詳細</h2>
         <div class="card">
@@ -29,7 +7,6 @@
             <div class="col-4">
               <%= image_tag @post.get_image(500, 300), class: "img-fluid" %>
               <p class="small-text">投稿者：<%= link_to "#{@post.user.full_name}", user_path(@post.user.id) %>　<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-              <p>ジャンル：<%= @post.genre.name %></p>
             </div>
             <div class="col-8">
               <div class="card-body">
