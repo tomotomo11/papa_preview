@@ -25,19 +25,7 @@
             <td><%= post.name %></td>
             <td><%= post.user.full_name %></td>
             <td>
-              <% if post.favorited_by?(current_user) %>
-                <p>
-                  <%= link_to post_favorite_path(post), method: :delete do %>
-                    ♥：<%= post.favorites.count %>
-                  <% end %>
-                </p>
-                <% else %>
-                <p>
-                  <%= link_to post_favorite_path(post), method: :post do %>
-                    ♥：<%= post.favorites.count %>
-                  <% end %>
-                </p>
-              <% end %>
+              <%= render '/public/favorites/favorites-btn', post: post %>
             </td>
             <td><%= render "public/posts/static_rate", post: post %></td>
           </tr>

@@ -20,19 +20,7 @@
                 <p class="min-three-lines-height">商品レビュー：<%= @post.body %></p>
                 <div class="d-flex align-items-center">
                   <p>
-                    <% if @post.favorited_by?(current_user) %>
-                      <p>
-                        <%= link_to post_favorite_path(@post), method: :delete do %>
-                          ♥：<%= @post.favorites.count %>
-                        <% end %>
-                      </p>
-                      <% else %>
-                      <p>
-                        <%= link_to post_favorite_path(@post), method: :post do %>
-                          ♥：<%= @post.favorites.count %>
-                        <% end %>
-                      </p>
-                    <% end %>
+                    <%= render '/public/favorites/favorites-btn', post: @post %>
                   </p>
                   <p class="ml-3">コメント件数：<%= @post.post_comments.count %></p>
                 </div>
