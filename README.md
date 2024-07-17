@@ -75,7 +75,7 @@ URL：/admin/sign_in
 
 ## 設計書
 ### 画面遷移図
-URLは[こちら](https://www.figma.com/design/48ActQj4uBZE7dFgehPHGU/%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA?node-id=0-1&t=x2RjptCozGrAnJDp-0)
+ワイヤーフレームは[こちら](https://www.figma.com/design/48ActQj4uBZE7dFgehPHGU/%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA?node-id=0-1&t=x2RjptCozGrAnJDp-0)
 
 ### ER図
 [![Image from Gyazo](https://i.gyazo.com/59e18734c3fa2995ec9299d77158a87a.png)](https://gyazo.com/59e18734c3fa2995ec9299d77158a87a)
