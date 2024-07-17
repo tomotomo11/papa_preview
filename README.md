@@ -80,6 +80,9 @@ URL：/admin/sign_in
 ### ER図
 [![Image from Gyazo](https://i.gyazo.com/59e18734c3fa2995ec9299d77158a87a.png)](https://gyazo.com/59e18734c3fa2995ec9299d77158a87a)
 
+### AWS構成図
+[![Image from Gyazo](https://i.gyazo.com/4ced22d4d7168cfd2577af2229a28029.png)](https://gyazo.com/4ced22d4d7168cfd2577af2229a28029)
+
 ### サイトURL
 URLは[こちら](http://54.95.246.32/)
 ​
