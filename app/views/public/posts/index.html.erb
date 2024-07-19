@@ -65,7 +65,7 @@
                   <%= render "static_rate", post: post %>
                 </div>
                 <div class="d-flex align-items-center mt-1">
-                  <p id="favorite_buttons_<%= post.id %>">
+                  <p id="favorite_buttons_<%= post.id %>" >
                   <%= render '/public/favorites/favorites-btn', post: post %>
                   </p>
                   <p class="ml-3">コメント件数：<%= link_to "#{post.post_comments.count}", post_path(post.id) %></p>
