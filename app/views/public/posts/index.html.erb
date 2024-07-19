@@ -58,12 +58,14 @@
                 <%= image_tag post.get_image(350, 250), class: "card-img-top card-link" %>
               <% end %>
               <div class="card-body">
-                <h5 class="card-title"><span class="yellow-bg">商品名: <%= post.name %></span></h5>
+                <h5 class="card-title">
+                  <span class="yellow-bg">商品名: <%= post.name %></span>
+                </h5>
                 <div>
                   <%= render "static_rate", post: post %>
                 </div>
                 <div class="d-flex align-items-center mt-1">
-                  <p>
+                  <p id="favorite_buttons_<%= post.id %>">
                   <%= render '/public/favorites/favorites-btn', post: post %>
                   </p>
                   <p class="ml-3">コメント件数：<%= link_to "#{post.post_comments.count}", post_path(post.id) %></p>
