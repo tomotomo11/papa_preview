@@ -45,15 +45,18 @@
         <%= render '/layouts/error_messages', post: @post_comment %>
           <div class="row">
             <div class="col">
-              <h4 class="comment-form text-center mt-4 mb-3">コメントする</h4>
-              <%= render "public/post_comments/comment-form", post: @post, post_comment: @post_comment %>
+              <h4 class="text-center mt-4 mb-3">コメントする</h4>
+              <div id="comment-form">
+                <%= render "public/post_comments/comment-form", post: @post, post_comment: @post_comment %>
+              </div>
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <h4 class="commentslist text-center mb-3">コメント一覧</h4>
-              <%= render "public/post_comments/commentslist", post: @post %>
-
+              <h4 class="text-center mb-3">コメント一覧</h4>
+              <div id="commentslist">
+                <%= render "public/post_comments/commentslist", post: @post %>
+              </div>
             </div>
           </div>
         <% end %>
