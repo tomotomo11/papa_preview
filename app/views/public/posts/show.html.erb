@@ -19,7 +19,7 @@
                 <p>一言：<%= @post.title %></p>
                 <p class="min-three-lines-height">商品レビュー：<%= @post.body %></p>
                 <div class="d-flex align-items-center">
-                  <p>
+                  <p id="favorite_buttons_<%= @post.id %>">
                     <%= render '/public/favorites/favorites-btn', post: @post %>
                   </p>
                   <p class="ml-3">コメント件数：<%= @post.post_comments.count %></p>
