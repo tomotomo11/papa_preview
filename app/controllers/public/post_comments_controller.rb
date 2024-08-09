@@ -4,17 +4,31 @@ class Public::PostCommentsController < ApplicationController
     @comment = current_user.post_comments.new(post_comment_params)
     @comment.post_id = @post.id
     if @comment.save
-      redirect_to post_path(@post), notice: "コメントしました。"
+      flash[:notice] = "コメントしました。"
+      respond_to do |format|
+        format.js
+        format.html { redirect_to post_path(@post) }
+      end
     else
       flash[:alert] = "コメントできませんでした。"
-      redirect_to post_path(@post)
+      respond_to do |format|
+        format.js
+        format.html { redirect_to post_path(@post), alert: "コメントの投稿に失敗しました。" }
+      end
     end
   end
 
+
   def destroy
-    PostComment.find(params[:id]).destroy
-    redirect_to post_path(params[:post_id]), notice: "コメントを削除しました。"
+    @post = Post.find(params[:post_id])
+    @comment = @post.post_comments.find(params[:id])
+    @comment.destroy
+    respond_to do |format|
+      format.js
+      format.html { redirect_to post_path(@post), notice: "コメントを削除しました。" }
+    end
   end
+
 
   private
   def post_comment_params
