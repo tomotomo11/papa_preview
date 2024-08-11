@@ -34,7 +34,7 @@
                   <%= link_to "みんなの投稿へ戻る", posts_path, class:"btn btn-primary mr-3 px-4" %>
                   <% if @post.user == current_user %>
                     <%= link_to "編集する", edit_post_path, class:"btn btn-success mr-3 px-4" %>
-                    <%= link_to "削除する", post_path(@post.id), method: :delete, class:"btn btn-danger px-4" %>
+                    <%= link_to "削除する", post_path(@post.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class:"btn btn-danger px-4" %>
                   <% end %>
                 </div>
               </div>
