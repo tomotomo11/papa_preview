@@ -23,6 +23,7 @@ class Public::PostCommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.post_comments.find(params[:id])
     @comment.destroy
+    flash[:notice] = "コメントを削除しました。"
     respond_to do |format|
       format.js
       format.html { redirect_to post_path(@post), notice: "コメントを削除しました。" }
