@@ -4,7 +4,11 @@ class Admin::TagsController < ApplicationController
   def create
     @tag = Tag.new(tag_params)
     @tags = Tag.all
-    @tag.save
+    if @tag.save
+      flash[:notice] = "成功"
+    else
+      flash.now[:alert] = "失敗"
+    end
   end
 
   def index

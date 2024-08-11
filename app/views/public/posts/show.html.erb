@@ -19,9 +19,9 @@
                 <p>一言：<%= @post.title %></p>
                 <p class="min-three-lines-height">商品レビュー：<%= @post.body %></p>
                 <div class="d-flex align-items-center">
-                  <p>
+                  <div id="favorite_buttons_<%= @post.id %>">
                     <%= render '/public/favorites/favorites-btn', post: @post %>
-                  </p>
+                  </div>
                   <p class="ml-3">コメント件数：<%= @post.post_comments.count %></p>
                 </div>
                 <div class="row my-3">
@@ -42,35 +42,21 @@
           </div>
         </div>
         <% if user_signed_in? %>
+        <%= render '/layouts/error_messages', post: @post_comment %>
           <div class="row">
             <div class="col">
               <h4 class="text-center mt-4 mb-3">コメントする</h4>
-              <%= form_with model: [@post, @post_comment] do |f| %>
-                <p><%=f.text_area :body, rows: '4', placeholder: "ここにコメントしてください", style: "width: 100%;" %></p>
-                <p class="d-flex justify-content-end"><%= f.submit "送信", class:"btn btn-success px-4" %></p>
-              <% end %>
+              <div id="comment-form">
+                <%= render "public/post_comments/comment-form", post: @post, post_comment: @post_comment %>
+              </div>
             </div>
           </div>
           <div class="row">
             <div class="col">
               <h4 class="text-center mb-3">コメント一覧</h4>
-                <% @post.post_comments.each do |post_comment| %>
-                <div class="d-flex flex-row">
-                  <div class="col-3 pr-4">
-                    <h5><%= post_comment.user.full_name %></h5>
-                    <p><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
-                  </div>
-                  <div class="comment-body my-2">
-                    <p><%= post_comment.body %></p>
-                    <div class="text-right">
-                      <% if post_comment.user == current_user %>
-                        <%= link_to "削除する", post_post_comment_path(post_comment.post, post_comment), method: :delete, class:"btn btn-danger px-4" %>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-                <% end %>
-
+              <div id="commentslist">
+                <%= render "public/post_comments/commentslist", post: @post %>
+              </div>
             </div>
           </div>
         <% end %>
