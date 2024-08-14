@@ -93,6 +93,15 @@ h1, h2, h3, h4, h5, h6, p {
     border-radius: 2em;
   }
 
+.form-check-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-check-box .form-check-inline {
+  margin-right: 15px; /* チェックボックス間のスペースを調整 */
+}
+
 @media (max-width: 768px) {
   .text-overlay {
     top: 70px;

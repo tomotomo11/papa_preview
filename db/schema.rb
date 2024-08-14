@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2024_08_11_074515) do
     t.string "title", null: false
     t.text "body", null: false
     t.integer "price"
-    t.integer "star", null: false
+    t.float "star", null: false
     t.string "tag"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
