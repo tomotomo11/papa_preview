@@ -24,7 +24,7 @@
             </td>
             <td><%= post.name %></td>
             <td><%= post.user.full_name %></td>
-            <td>
+            <td id="favorite_buttons_<%= post.id %>">
               <%= render '/public/favorites/favorites-btn', post: post %>
             </td>
             <td>
