@@ -22,9 +22,9 @@
               <p>一言：<%= post.title %></p>
 
               <div class="d-flex align-items-center mt-1">
-                <p>
+                <div id="favorite_buttons_<%= post.id %>">
                   <%= render '/public/favorites/favorites-btn', post: post %>
-                </p>
+                </div>
                 <p class="ml-3"><%= link_to "コメント数:#{post.post_comments.count}", post_path(post.id) %></p>
               </div>
               <div class="row my-3">

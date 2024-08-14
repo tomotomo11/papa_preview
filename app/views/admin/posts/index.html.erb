@@ -25,9 +25,10 @@
               <p>商品レビュー：<%= post.body %></p>
               <div class="d-flex align-items-center mt-1">
                 <p>
-                  ♥：<%= post.favorites.count %>
+                  <i class="fa-solid fa-heart" style="color: #e54747;"></i> :
+                  <%= post.favorites.count %>
                 </p>
-                <p class="ml-3"><%= "コメント数: #{post.post_comments.count}" %></p>
+                <p class="ml-3"><%= "コメント数 : #{post.post_comments.count}" %></p>
               </div>
               <div>
                 <div class="col-9">
