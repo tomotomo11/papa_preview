@@ -63,14 +63,47 @@
           </div>
           <div class="col-md-8">
             <div>
-              <%= render "static_rate", post: @post, class: "form-control" %>
+              <div id="star_<%= @post.id %>", class: "form-control"></div>
+              <script>
+              $(document).off('turbolinks:load').on('turbolinks:load', function() {  //$(document).on('turbolinks:load', ...) の前に、off('')で同じイベントリスナーを削除してから再バインディングすることで、重複を防ぐ
+                let elem = document.querySelector('#star_<%= @post.id %>');
+                if (elem == null) return;
+
+                elem.innerHTML = "";
+                let opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  half: true,
+                  score: "<%= @post.star %>",
+                  scoreName: 'post[star]',
+                };
+                raty(elem, opt);
+              });
+              </script>
             </div>
           </div>
         </div>
+        <div class="row mx-auto col-9 mb-3">
+          <div class="col-md-4">
+            <%= f.label :tag_ids, "タグ" %>
+          </div>
+          <div class="col-md-8">
+            <div class="form-check-box">
+              <% Tag.all.each do |tag| %>
+                <div class="form-check-inline">
+                  <%= f.check_box :tag_ids, { multiple: true, checked: @post.tag_ids.include?(tag.id) }, tag.id, nil %>
+                  <%= f.label "tag_ids_#{tag.id}", tag.name, class: "form-check-label" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
         <div class="row mx-auto col-3 d-flex flex-row">
           <%= f.submit "変更を保存", class:"btn btn-sm btn-success col py-2 my-2 mr-3" %>
           <% if @post.user == current_user %>
-            <%= link_to "削除する", post_path(@post.id), method: :delete, class:"btn btn-sm btn-danger col-5 py-2 my-2" %>
+            <%= link_to "削除する", post_path(@post.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class:"btn btn-sm btn-danger col-5 py-2 my-2" %>
           <% end %>
         </div>
       <% end %>
