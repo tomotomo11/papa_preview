@@ -2,7 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per(9).order(created_at: :desc)
     @genres = Genre.all
     if params[:genre_id].present?
       @genre = Genre.find(params[:genre_id])
@@ -12,8 +12,6 @@ class Public::PostsController < ApplicationController
     if params[:tag_ids].present?
       @posts = @posts.joins(:tag_relationships).where(tag_relationships: {tag_id: params[:tag_ids]}).distinct
     end
-
-    @posts = @posts.page(params[:page]).per(10)
   end
 
   def new

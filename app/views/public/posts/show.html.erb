@@ -17,7 +17,7 @@
                   </div>
                 </h5>
                 <p>一言：<%= @post.title %></p>
-                <p class="min-three-lines-height">商品レビュー：<%= @post.body %></p>
+                <p class="min-three-lines-height">商品レビュー：<%= simple_format(@post.body, sanitize: true) %></p>
                 <div class="d-flex align-items-center">
                   <div id="favorite_buttons_<%= @post.id %>">
                     <%= render '/public/favorites/favorites-btn', post: @post %>
